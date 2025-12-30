@@ -2,4 +2,4 @@
 
 using namespace std;
 
-// Use(Character* pl) - Ä³¸¯ÅÍ°¡ »ç¿ëÇÏ°í ½ºÅÈ Á¶Àı
+// Use(Character* pl) - ìºë¦­í„°ê°€ ì‚¬ìš©í•˜ê³  ìŠ¤íƒ¯ ì¡°ì ˆ

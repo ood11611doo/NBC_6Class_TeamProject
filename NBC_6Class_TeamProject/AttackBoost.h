@@ -4,12 +4,12 @@ using namespace std;
 
 class AttackBoost {
 private:
-	// - Todo : º¯¼ö ¼±¾ğ
+	// - Todo : ë³€ìˆ˜ ì„ ì–¸
 	// name, attackIncrease
 
 public:
-	// - Todo : ÇÔ¼ö ¼±¾ğ
-	// »ı¼ºÀÚ
+	// - Todo : í•¨ìˆ˜ ì„ ì–¸
+	// ìƒì„±ì
 	// GetName()
 	// Use(Character* pl)
 };

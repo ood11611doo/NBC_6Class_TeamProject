@@ -4,9 +4,9 @@ using namespace std;
 
 class Item {
 public:
-	// - Todo : ÇÔ¼ö ¼±¾ğ
-	// »ı¼ºÀÚ ÇÏ´øÁö¸»´øÁö
-	// ¼ø¼ö °¡»ó ÇÔ¼ö?
+	// - Todo : í•¨ìˆ˜ ì„ ì–¸
+	// ìƒì„±ì í•˜ë˜ì§€ë§ë˜ì§€
+	// ìˆœìˆ˜ ê°€ìƒ í•¨ìˆ˜?
 	// GetName()
 	// Use(Character* pl)
 };
