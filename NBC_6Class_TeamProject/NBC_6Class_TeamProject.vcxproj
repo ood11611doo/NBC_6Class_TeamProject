@@ -122,10 +122,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttackBoost.cpp" />
+    <ClCompile Include="BattleSystem.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="HealthPotion.cpp" />
+    <ClCompile Include="LogSystem.cpp" />
     <ClCompile Include="main.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Player.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AttackBoost.h" />
+    <ClInclude Include="BattleSystem.h" />
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="HealthPotion.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="LogSystem.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
