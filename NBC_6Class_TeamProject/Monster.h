@@ -1,4 +1,5 @@
 #pragma once
+#include <random>
 
 using namespace std;
 
@@ -10,6 +11,10 @@ private:
 	// int값 몬스터 이름 가져온 인덱스
 	// int값 현재 체력
 	// int값 공격력
+	string MonsterName;
+	int MonsterNameIndex;
+	int Hp;
+	int Att;
 
 public:
 	// - Todo : 생성자
