@@ -6,12 +6,27 @@ using namespace std;
 
 Monster::Monster(int plLevel) {
 	// - Todo : 생성자 정의 필요
-	// 몬스터 스탯 설정 필요
-	//  생성할 때 플레이어 레벨 기반으로 스탯 설정이 되기 때문에
-	// 플레이어 레벨값을 무조건 받아서 몬스터를 생성하는 식이 필요
-	// int randSize = rand() % monsterNames.size();
-	// ㄴ이 위 식이 vector 랜덤 인덱스를 뽑아주니, 그걸로 사용하면 됨
+// 몬스터 스탯 설정 필요
+//  생성할 때 플레이어 레벨 기반으로 스탯 설정이 되기 때문에
+// 플레이어 레벨값을 무조건 받아서 몬스터를 생성하는 식이 필요
+// int randSize = rand() % monsterNames.size();
+// ㄴ이 위 식이 vector 랜덤 인덱스를 뽑아주니, 그걸로 사용하면 됨
+// Map 사용
+
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dist1(20, 30);
+	int RandValHp = dist1(gen);
+	uniform_int_distribution<> dist2(5, 10);
+	int RandValAtt = dist2(gen);
+
+	Hp = plLevel * RandValHp;
+	Att = plLevel * RandValAtt;
+
+	cout << Hp << endl;
+	cout << Att << endl;
 }
+
 
 int Monster::TakeDamage(int damage) {
 	// - Todo : 기능 함수 정의 필요
