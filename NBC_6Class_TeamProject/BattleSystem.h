@@ -6,15 +6,14 @@ using namespace std;
 
 class BattleSystem {
 private:
-	// - Todo : 변수 선언 필요
-	// Monster 포인터 변수 - 함수에서 알아서 만들고 지우셈
+	Monster* monster_;
 
 public:
-	// - Todo : 생성자 / 소멸자
-	// - Todo : getter, setter
+	BattleSystem();
+	~BattleSystem();
 
 	// 기능 함수 선언됨 - 자세한 내용 정의는 cpp파일로
-	void GenerateMonster(int plLevel);
-	bool Battle(Player* pl);
-	void DeleteMonster();
+	void GenerateMonster(int plLevel); // 몬스터 생성
+	bool Battle(Player* pl); // 전투: true=플레이어 승리, false=플레이어 패배
+	void DeleteMonster(); // 몬스터 삭제
 };
