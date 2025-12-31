@@ -1,28 +1,37 @@
 #pragma once
+#include <random>
+#include <string>
 
 using namespace std;
 
 class Monster {
 private:
-	// - Todo : º¯¼ö ¼±¾ğ ÇÊ¿ä
-	// 
-	// string °ª ÀÌ¸§ º¯¼ö
-	// int°ª ¸ó½ºÅÍ ÀÌ¸§ °¡Á®¿Â ÀÎµ¦½º
-	// int°ª ÇöÀç Ã¼·Â
-	// int°ª °ø°İ·Â
+	string MonsterName;
+	int MonsterNameIndex; // ë‚˜ì¤‘ì— ì§ˆë¬¸
+
+	int MonsterHp;
+	int MonsterAttack;
+	// string RecentMonsterName; // ê°ì²´ ì‚¬ë¼ì§€ë©´ ê°™ì´ ì‚­ì œë¨ --> ë°°í‹€ë§¤ë‹ˆì €
+	// ë‘˜ë‚´ë‹˜ ì´ê±° ë§¤ë‹ˆì €ì— ë„£ì–´ì£¼ì„¸ìš”
 
 public:
-	// - Todo : »ı¼ºÀÚ
-	// int ÇÃ·¹ÀÌ¾î ·¹º§°ª ±â¹İÀ¸·Î ½ºÅÈÀÌ ¼³Á¤µÇ±â ¶§¹®¿¡
-	// ¾Æ·¡ ¹Ì¸® ¼±¾ğµÇ¾îÀÖ´Â Monster°ªÀ» cppÆÄÀÏ¿¡¼­ Á¤ÀÇÇØÁÖ¼¼¿ä
+
 	Monster(int plLevel);
 
-	// - Todo : getter, setter ÇÔ¼ö ¼±¾ğ ÇÊ¿ä
-	// ÀÌ¸§ ÇÔ¼ö (getter, setter)
-	// ÀÌ¸§ ÀÎµ¦½º ÇÔ¼ö (getter, setter)
-	// ÇöÀç Ã¼·Â ÇÔ¼ö (getter, setter)
-	// °ø°İ·Â ÇÔ¼ö (getter, setter)
+	string GetMonsterName() { return MonsterName; }
+	void SetMonsterName(string name) { MonsterName = name; }
 
-	// ±â´É ÇÔ¼ö ¼±¾ğµÊ - ÀÚ¼¼ÇÑ ³»¿ë Á¤ÀÇ´Â cppÆÄÀÏ·Î
+	int GetMonsterNameIndex() { return MonsterNameIndex; }
+	void SetMonsetNameIndex(int index) { MonsterNameIndex = index; }
+	// ìƒì„±ìì—ì„œ ê·œì¹™ì— ì˜í•´ ì„¤ì •ë˜ëŠ”ë° ì„¸í„° í•„ìš”?
+
+	int GetMonsterHp() { return MonsterHp; }
+	void SetMonsterHp(int hp) { MonsterHp = hp; } // í•„ìš”?
+	
+	int GetMonsterAttack() { return MonsterAttack; }
+	void SetMonsterAttack(int attack) { MonsterAttack = attack; }
+
 	int TakeDamage(int damage);
+
+	string PrintMonsterStatus();
 };

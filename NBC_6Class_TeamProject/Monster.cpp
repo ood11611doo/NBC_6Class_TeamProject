@@ -4,23 +4,51 @@
 
 using namespace std;
 
-Monster::Monster(int plLevel) {
-	// - Todo : »ı¼ºÀÚ Á¤ÀÇ ÇÊ¿ä
-	// ¸ó½ºÅÍ ½ºÅÈ ¼³Á¤ ÇÊ¿ä
-	//  »ı¼ºÇÒ ¶§ ÇÃ·¹ÀÌ¾î ·¹º§ ±â¹İÀ¸·Î ½ºÅÈ ¼³Á¤ÀÌ µÇ±â ¶§¹®¿¡
-	// ÇÃ·¹ÀÌ¾î ·¹º§°ªÀ» ¹«Á¶°Ç ¹Ş¾Æ¼­ ¸ó½ºÅÍ¸¦ »ı¼ºÇÏ´Â ½ÄÀÌ ÇÊ¿ä
-	// int randSize = rand() % monsterNames.size();
-	// ¤¤ÀÌ À§ ½ÄÀÌ vector ·£´ı ÀÎµ¦½º¸¦ »Ì¾ÆÁÖ´Ï, ±×°É·Î »ç¿ëÇÏ¸é µÊ
+Monster::Monster(int plLevel, string RecentMonsterName) {
+	
+	// ì§ì „ ëª¬ìŠ¤í„°ì´ë¦„ì„ ì €ì¥í•´ì„œ í•´ë‹¹ ëª¬ìŠ¤í„° ì´ë¦„ê³¼ ê°™ìœ¼ë©´ ë‹¤ì‹œ ë½‘ê¸°
+	bool SameWithRecentMonsterName; // ì—¬ê¸°ì„œë§Œ ì“°ë‹ˆê¹Œ êµ³ì´ ë©¤ë²„í•¨ìˆ˜ë¡œ ì •ì˜í•  í•„ìš”ê°€ ì—†ìŒ
+	do {
+		int randSize = rand() % monsterNames.size();
+		MonsterNameIndex = randSize;
+		MonsterName = monsterNames[MonsterNameIndex]; // ëœë¤ ëª¬ìŠ¤í„° ìƒì„±
+
+		SameWithRecentMonsterName = false;
+
+		if (MonsterName == RecentMonsterName) {
+			SameWithRecentMonsterName = true;
+		}
+
+	} while (SameWithRecentMonsterName);
+
+
+	int RandomValueHp = rand() % (11) + 20;
+	MonsterHp = plLevel * RandomValueHp;
+	int RandomValueAttack = rand() % (6) + 5;
+	MonsterAttack = plLevel * RandomValueAttack;
+
 }
 
+
 int Monster::TakeDamage(int damage) {
-	// - Todo : ±â´É ÇÔ¼ö Á¤ÀÇ ÇÊ¿ä
-	// Ã¼·Â °¨¼Ò¸¦ ÇØ´ç ÇÔ¼ö¿¡¼­ ÁøÇà
-	// ±× ÈÄ, ¸ó½ºÅÍÀÇ ³²Àº Ã¼·ÂÀ» return
-	// 0 ÀÌÇÏ¸é 0À¸·Î return
+	
+	MonsterHp -= damage;
+	
+	if (MonsterHp <= 0) {
+		MonsterHp = 0;
+		RecentMonsterName = MonsterName;
 
+		return MonsterHp;
+	}
 
+	return MonsterHp;
+}
 
-	// ´Ù ¸¸µç ÈÄ¿¡ ¾Æ·¡ ´õ¹Ì return°ªÀº Áö¿ì¸é µÊ!
-	return 0;
+string Monster::PrintMonsterStatus() {
+	string ReturnString = "";
+	ReturnString += "ëª¬ìŠ¤í„° " + MonsterName + "ë“±ì¥!\n";
+	ReturnString += "í˜„ì¬ ì²´ë ¥: " + to_string(MonsterHp) + "\n";
+	ReturnString += "ê³µê²©ë ¥: " + to_string(MonsterAttack) + "\n";
+
+	return ReturnString;
 }

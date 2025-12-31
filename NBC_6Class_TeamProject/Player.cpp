@@ -3,40 +3,48 @@
 using namespace std;
 
 void Player::CheckLevelUp() {
-	// - Todo : ±â´É ÇÔ¼ö Á¤ÀÇ ÇÊ¿ä
-	// ·¹º§¾÷ °è»ê ÇÔ¼ö
-	//  ·¹º§¾÷ ÇÔ¼ö ÇÏ³ª¿¡¼­ °æÇèÄ¡°¡ ÀÏÁ¤ ÀÌ»óÀÎÁö °è»êÀ» ÇÑ ÈÄ¿¡
-	//  ·¹º§¾÷À» ¹Ù·Î ½ÇÇà½ÃÄÑµµ µÇ°í, ¾Æ´Ï¸é °æÇèÄ¡ °è»ê¿ë ÇÔ¼ö¸¦
-	//  »õ·Î ¸¸µé¾îµµ µË´Ï´Ù.
+	PlayerExe += 50;
+
+	if (PlayerExe >= 100) {
+		PlayerExe -= 100;
+		PlayerLevel += 1;
+		PlayerMaxHealthPotuin += PlayerLevel * 20;
+		PlayerHealthPotion = PlayerMaxHealthPotion;
+		PlayerAttack += PlayerLevel * 5;
+	}
 }
 
 string Player::PrintPlayerStatus() {
-	// - Todo : ±â´É ÇÔ¼ö Á¤ÀÇ ÇÊ¿ä
-	// string ¸¸µé¾î¼­, ¿©±â¿¡ ½ºÅÈ Ãâ·Â ¸Þ½ÃÁö ¹ÝÈ¯ÇØÁÖ½Ã¸é µË´Ï´Ù
+	string PlayerStatus;
+	PlayerStatus += "ì´ë¦„: " + PlayerName + "\n";
+	PlayerStatus += "ë ˆë²¨: " + PlayerLevel + "\n";
+	PlayerStatus += "ìµœëŒ€ ì²´ë ¥: " + PlayerMaxHealthPotion + "\n";
+	PlayerStatus += "í˜„ìž¬ ì²´ë ¥: " + PlayerHealthPotuin + "\n";
+	PlayerStatus += "ê³µê²©ë ¥: " + PlayerAttack + "\n";
+	PlayerStatus += "ê³¨ë“œ: " + Gold + "\n";
+	PlayerStatus += "ê²½í—˜ì¹˜: " + PlayerExe + "/100" + "\n";
 	
-
-
-	// ´Ù ¸¸µç ÈÄ¿¡ ¾Æ·¡ ´õ¹Ì return°ªÀº Áö¿ì¸é µÊ!
-	return "";
+	return PlayerStatus;
 }
 
 void Player::UseItem(int itemIndex) {
-	// - Todo : ±â´É ÇÔ¼ö Á¤ÀÇ ÇÊ¿ä
-	// ÇÃ·¹ÀÌ¾î´Â Item vector¹è¿­À» °¡Áö°í ÀÖÀ½.
-	// ¿©±â¼­ itemIndex·Î, ¾î¶² ¾ÆÀÌÅÛÀÎÁö Á¾·ù¸¦ ¹Þ°Å³ª,
-	// ¾Æ´Ï¸é ¹è¿­ ÀÎµ¦½º¸¦ ¹Þ°Å³ª ÇØ¼­ ÇØ´ç ¾ÆÀÌÅÛÀ» ¾ø¾Ö´Â °Í ±îÁö´Â
-	// ¿©±â¼­ °è»êÀ» ÇØÁà¾ßÇÒµí?
-	// Item¿¡¼­ Use¸¦ ÇÑ ´ÙÀ½¿¡ ¾ø¾Ö¾ßÇÔ!
+	// - Todo : ê¸°ëŠ¥ í•¨ìˆ˜ ì •ì˜ í•„ìš”
+	// í”Œë ˆì´ì–´ëŠ” Item vectorë°°ì—´ì„ ê°€ì§€ê³  ìžˆìŒ.
+	// ì—¬ê¸°ì„œ itemIndexë¡œ, ì–´ë–¤ ì•„ì´í…œì¸ì§€ ì¢…ë¥˜ë¥¼ ë°›ê±°ë‚˜,
+	// ì•„ë‹ˆë©´ ë°°ì—´ ì¸ë±ìŠ¤ë¥¼ ë°›ê±°ë‚˜ í•´ì„œ í•´ë‹¹ ì•„ì´í…œì„ ì—†ì• ëŠ” ê²ƒ ê¹Œì§€ëŠ”
+	// ì—¬ê¸°ì„œ ê³„ì‚°ì„ í•´ì¤˜ì•¼í• ë“¯?
+	// Itemì—ì„œ Useë¥¼ í•œ ë‹¤ìŒì— ì—†ì• ì•¼í•¨!
+
 }
 
 int Player::TakeDamage(int damage) {
-	// - Todo : ±â´É ÇÔ¼ö Á¤ÀÇ ÇÊ¿ä
-	// Ã¼·Â °¨¼Ò¸¦ ÇØ´ç ÇÔ¼ö¿¡¼­ ÁøÇà
-	// ±× ÈÄ, ÇÃ·¹ÀÌ¾îÀÇ ³²Àº Ã¼·ÂÀ» return
-	// 0 ÀÌÇÏ¸é 0À¸·Î return
 
-
-
-	// ´Ù ¸¸µç ÈÄ¿¡ ¾Æ·¡ ´õ¹Ì return°ªÀº Áö¿ì¸é µÊ!
-	return 0;
+	if (PlayerHp > 0) {
+		PlayerHp -= damage;
+	}
+	else if (PlayerHp <= 0) {
+		PlayerHp = 0;
+		retuen 0;
+	}
+	return PlayerHp;
 }

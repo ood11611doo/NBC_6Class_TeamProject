@@ -7,33 +7,37 @@ using namespace std;
 
 class Player {
 private:
-	// - Todo : º¯¼ö ¼±¾ğ ÇÊ¿ä
-	// 
-	// string °ª ÀÌ¸§ º¯¼ö
-	// int°ª ÇöÀç ·¹º§
-	// int°ª ÇöÀç Ã¼·Â / ÃÖ´ë Ã¼·Â
-	// int°ª °ø°İ·Â
-	// int°ª ÇöÀç °æÇèÄ¡
-	// int°ª ÇöÀç °ñµå
-	// vector - Item Å¬·¡½º ¹è¿­°ª
-	//  vector¿¡ Å¬·¡½º ´ãÀ» ¶§ Æ÷ÀÎÅÍ°ªÀ¸·Î ´ã¾Æµµ µÊ. µ¿Àû ÇÒ´ç¿ë?
+	//  vector - Item í´ë˜ìŠ¤ ë°°ì—´ê°’
+	//  vectorì— í´ë˜ìŠ¤ ë‹´ì„ ë•Œ í¬ì¸í„°ê°’ìœ¼ë¡œ ë‹´ì•„ë„ ë¨. ë™ì  í• ë‹¹ìš©?
+	string PlayerName = "";
+	int PlayerLevel = 1;
+	int PlayerMaxHealthPotion;
+	int PlayerHealthPotion;
+	int PlayerAttack;
+	int Gold = 0;
+	int PlayerExe = 0;
+	vector<Item*> V = vector<Item*>(10, nullptr); // V[0] = new HealthPotion; // V[0].Use();
 
 public:
-	// - Todo : »ı¼ºÀÚ
-	// °ª ÀÔ·Â ¹Ş¾Æ¼­ ¸¸µé¾îµµ µÇÁö¸¸
-	// ±×·² °æ¿ì ±âº» »ı¼ºÀÚµµ ¸¸µé¾î¼­ 2Á¾·ù ¸¸µé¾îÁÖ¼¼¿ä
+	Player(string name) : PlayerMaxHp(200), PlayerHp(200), PlayerAttack(30), V(10, nullptr) // í¬ì…˜ê³¼ ë¶€ìŠ¤í„° ì£¼ì†Œ ë„£ì–´ì£¼ê¸°
+	{
+		PlayerName = name;
+	}
+	
+	~Player() {
 
-	// - Todo : getter, setter ÇÔ¼ö ¼±¾ğ ÇÊ¿ä
-	// ÀÌ¸§ ÇÔ¼ö (getter, setter)
-	// ·¹º§ ÇÔ¼ö (getter, setter)
-	// ÃÖ´ë Ã¼·Â ÇÔ¼ö (getter, setter)
-	// ÇöÀç Ã¼·Â ÇÔ¼ö (getter, setter)
-	// °ø°İ·Â ÇÔ¼ö (getter, setter)
-	// ÇöÀç °æÇèÄ¡ ÇÔ¼ö (getter, setter)
-	// ÇöÀç °ñµå ÇÔ¼ö (getter, setter)
-	// ÇöÀç ¾ÆÀÌÅÛ ¹è¿­ ÇÔ¼ö (getter)
+	}
+	// - Todo : getter, setter í•¨ìˆ˜ ì„ ì–¸ í•„ìš”
+	// ì´ë¦„ í•¨ìˆ˜ (getter, setter)
+	// ë ˆë²¨ í•¨ìˆ˜ (getter, setter)
+	// ìµœëŒ€ ì²´ë ¥ í•¨ìˆ˜ (getter, setter)
+	// í˜„ì¬ ì²´ë ¥ í•¨ìˆ˜ (getter, setter)
+	// ê³µê²©ë ¥ í•¨ìˆ˜ (getter, setter)
+	// í˜„ì¬ ê²½í—˜ì¹˜ í•¨ìˆ˜ (getter, setter)
+	// í˜„ì¬ ê³¨ë“œ í•¨ìˆ˜ (getter, setter)
+	// í˜„ì¬ ì•„ì´í…œ ë°°ì—´ í•¨ìˆ˜ (getter)
 
-	// ±â´É ÇÔ¼ö ¼±¾ğµÊ - ÀÚ¼¼ÇÑ ³»¿ë Á¤ÀÇ´Â cppÆÄÀÏ·Î
+	// ê¸°ëŠ¥ í•¨ìˆ˜ ì„ ì–¸ë¨ - ìì„¸í•œ ë‚´ìš© ì •ì˜ëŠ” cppíŒŒì¼ë¡œ
 	void CheckLevelUp();
 	string PrintPlayerStatus();
 	void UseItem(int itemIndex);
