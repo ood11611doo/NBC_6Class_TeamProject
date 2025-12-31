@@ -10,7 +10,6 @@ void HealthPotion::Use(Player* InPlayer)
 	// 예외사항으로 물약이 없다면 수량부족 문구와 같이 return
 	if (GetCount() <= 0)
 	{
-		cout << name << "의 수량이 부족하여 사용할 수없습니다." << '\n';
 		return;
 	}
 	else
