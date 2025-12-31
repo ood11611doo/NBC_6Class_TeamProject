@@ -29,7 +29,7 @@ constexpr const int ITEM_BUFFDAMAGE_VALUE = 10;
 const vector<string> monsterNames = {
 	"고블린",
 	"독거미",
-	"스켈레톤",
+	"스켈레톤", // 뽑은 것
 	"슬라임",
 	"오크",
 	"코볼트"
