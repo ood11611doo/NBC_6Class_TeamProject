@@ -1,14 +1,12 @@
-﻿#pragma once
+#pragma once
 #include <string>
 #include <vector>
 #include "Item.h"
 
-using namespace std;
-
 class Player {
 private:
 
-	string name;
+	std::string name;
 	int level;
 	int hp;
 	int max_hp;
@@ -16,16 +14,15 @@ private:
 	int extraatk;
 	int exp;
 	int gold;
-	vector <Item*> item = vector <Item*>(10, nullptr);
+	vector<Item*> item;
 
 public:
 
 	Player();
-	Player(string name);
+	Player(std::string name);
 
-	}
 	// - Todo : getter, setter 함수 선언 필요
-	string getName() const { return name; }
+	std::string getName() const { return name; }
 	void setName(string name) { this->name = name; }
 
 	int getLevel() const { return level; }
@@ -43,6 +40,11 @@ public:
 	int getExtraAtk() const { return extraatk; }
 	void setExtraAtk(int extraatk) { this->extraatk = extraatk; }
 
+	int getTotalAtk() const { return atkpower + extraatk; }
+
+	void addExp(int exp) { this->exp += exp; }
+	void addGold(int gold) { this->gold += gold; }
+
 	int getExp() const { return exp; }
 	void setExp(int exp) { this->exp = exp; }
 
@@ -52,7 +54,11 @@ public:
 	vector <Item*> getNumOfItem() const { return item; }
 
 	void CheckLevelUp();
-	string PrintPlayerStatus();
+	std::string PrintPlayerStatus();
+	std::string PrintEXPAndGold();
 	void UseItem(int itemIndex);
 	int TakeDamage(int damage);
+	void AddItemByIndex(int addIndex);
+	int ReturnItemCount(int itemIndex);
+	string GetItemName(int itemIndex);
 };

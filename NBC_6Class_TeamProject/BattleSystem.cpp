@@ -1,12 +1,12 @@
 #include "BattleSystem.h"
 using namespace std;
 
-BattleSystem::BattleSystem() : monster_(nullptr) {}
+BattleSystem::BattleSystem() : monster_(nullptr), recentMonsterName(""), battleReward(nullptr) {}
 BattleSystem::~BattleSystem() { DeleteMonster(); }
 
 void BattleSystem::GenerateMonster(int plLevel) {
     DeleteMonster();
-    monster_ = new Monster(plLevel); 
+    monster_ = new Monster(plLevel, recentMonsterName); 
 }
 
 void BattleSystem::DeleteMonster() {
@@ -15,48 +15,92 @@ void BattleSystem::DeleteMonster() {
         monster_ = nullptr;
     }
 }
-bool BattleSystem::Battle(Player* pl) { 
+bool BattleSystem::Battle(Player* pl) {
+    ClearLog();
     if (monster_ == nullptr) {
-        GenerateMonster(pl->GetLevel());
+        GenerateMonster(pl->getLevel());
     }
-    int playerHp = pl->GetHP();
-    int monsterHp = monster_->GetHP();
+    recentMonsterName = monster_->GetMonsterName();
+
+    int playerHp = pl->getHp();
+    int monsterHp = monster_->GetMonsterHp();
 
     while (playerHp > 0 && monsterHp > 0) {
-        monsterHp = monster_->TakeDamage(pl->GetAttack());
+        bool attackSkip = false;
 
-        if (monsterHp <= 0) {
-            break;
+        int attackItemChance = rand() % 100;
+        if (attackItemChance < PLAYER_POTION_ATTACK_CHANCE) {
+            int attackItemIndex = pl->ReturnItemCount(1);
+            if (attackItemIndex > 0) {
+                pl->UseItem(attackItemIndex);
+                battleRecords.push_back(new BattleRecord{ RecordType::playerBuff, pl->getTotalAtk() });
+                attackSkip = true;
+            }
         }
 
-        playerHp = pl->TakeDamage(monster_->GetAttack());
+        if (!attackSkip && pl->getHp() <= (pl->getMaxHp() * PLAYER_POTION_HEALTH_PERCENT) / 100) {
+            int healthItemChance = rand() % 100;
+            if (healthItemChance < PLAYER_POTION_HEALTH_CHANCE) {
+                int healthItemIndex = pl->ReturnItemCount(0);
+                if (healthItemIndex != -1) {
+                    pl->UseItem(healthItemIndex);
+                    battleRecords.push_back(new BattleRecord{ RecordType::playerHeal, pl->getHp() });
+                    attackSkip = true;
+                }
+            }
+        }
 
+        if (!attackSkip) {
+            monsterHp = monster_->TakeDamage(pl->getTotalAtk());
+            battleRecords.push_back(new BattleRecord{ RecordType::playerAttack, monsterHp });
+            if (monsterHp <= 0) {
+                break;
+            }
+        }
+
+        playerHp = pl->TakeDamage(monster_->GetMonsterAttack());
+        battleRecords.push_back(new BattleRecord{ RecordType::monsterAttack, playerHp });
         if (playerHp <= 0) {
             break;
         }
     }
+
     if (playerHp <= 0) {
-        DeleteMonster(); // 외부에서 지운다면 삭제
         return false;
     }
-    // 승리 보상: EXP 50, 골드 10~20, 30% 아이템 드랍
-    pl->AddExp(50); // CheckLevelUp()함수 구현 보고 수정
-    pl->AddGold(10 + (rand() % 11)); // 10~20 / 골드 획득 함수 연결
-    // AddGold() 없으면 아래 코드로 수정
-    /*int reward = 10 + (rand() % 11);
-    pl->SetGold(pl->GetGold() + reward);
-    */
+
+    int expAdded = 50;
+    int goldAdded = 10 + (rand() % 11);
+    int itemGetIndex = -1;
+
+    int dropRoll = (rand() % 100) + 1;
+    if (dropRoll <= 30) {
+        int itemIndex = rand() % 2;
+        if (itemIndex == 0) {
+            pl->AddItemByIndex(0);
+            itemGetIndex = 0;
+        } else {
+            pl->AddItemByIndex(1);
+            itemGetIndex = 1;
+        }
+    }
+
+    battleReward = new BattleReward();
+
+    pl->addExp(expAdded);
+    pl->addGold(goldAdded);
     pl->CheckLevelUp();
 
-    int dropRoll = (rand() % 100) + 1; // 1~100
-    if (dropRoll <= 30) {
-        int itemIndex = rand() % 2; // 0:포션, 1:공격부스트
-        if (itemIndex == 0) pl->UseItem(0); // 아이템 획득 함수 연결 (체력)
-        else pl->UseItem(1); // 아이템 획득 함수 연결 (공격)
-    }
-    // else (아이템 드랍 X)
-    //전투 종료
-   
-    DeleteMonster(); // 전투가 끝나면 몬스터는 삭제 / 외부에서 삭제하면 제거
     return true; 
+}
+void BattleSystem::ClearLog() {
+    for (const auto& inners : battleRecords) {
+        if (inners != nullptr) {
+            delete inners;
+        }
+    }
+    battleRecords.clear();
+
+    delete battleReward;
+    battleReward = nullptr;
 }

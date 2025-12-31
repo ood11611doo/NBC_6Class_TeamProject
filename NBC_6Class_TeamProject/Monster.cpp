@@ -18,7 +18,6 @@ Monster::Monster(int plLevel, std::string RecentMonsterName) {
 
 	} while (SameWithRecentMonsterName);
 
-
 	int RandomValueHp = rand() % (11) + 20;
 	MonsterHp = plLevel * RandomValueHp;
 	int RandomValueAttack = rand() % (6) + 5;
@@ -28,13 +27,10 @@ Monster::Monster(int plLevel, std::string RecentMonsterName) {
 
 
 int Monster::TakeDamage(int damage) {
-	
 	MonsterHp -= damage;
 	
 	if (MonsterHp <= 0) {
 		MonsterHp = 0;
-		
-		return MonsterHp;
 	}
 
 	return MonsterHp;

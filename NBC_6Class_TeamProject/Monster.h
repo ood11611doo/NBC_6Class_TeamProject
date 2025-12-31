@@ -2,8 +2,7 @@
 #include <random>
 #include <string>
 
-// 몬스터의 
-class Monster {   // 함수는 대문자 시작, 변수는 소문자 시작
+class Monster {
 private:
 	std::string MonsterName;
 	int MonsterNameIndex; // 나중에 질문
@@ -14,7 +13,7 @@ private:
 
 public:
 
-	Monster(int plLevel, std::string RecnetMonsterName);
+	Monster(int plLevel, std::string RecentMonsterName);
 
 	std::string GetMonsterName() { return MonsterName; }
 	void SetMonsterName(std::string name) { MonsterName = name; }

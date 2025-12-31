@@ -1,19 +1,22 @@
-﻿#include <iostream>
+#include <iostream>
 #include <algorithm>
 #include <vector>
 #include <sstream>
 #include <string>
 #include "Player.h"
+#include "HealthPotion.h"
+#include "AttackBoost.h"
 
 using namespace std;
 
-
 Player::Player() : level(1), hp(200), max_hp(200), atkpower(30), extraatk(10), exp(0), gold(0) {
 	name = " ";
+	item = vector<Item*>(10, nullptr);
 }
 
 Player::Player(string name) : level(1), hp(200), max_hp(200), atkpower(30), extraatk(10), exp(0), gold(0) {
 	this->name = name;
+	item = vector<Item*>(10, nullptr);
 }
 
 void Player::CheckLevelUp() {
@@ -38,25 +41,24 @@ string Player::PrintPlayerStatus() {
 	string playerstatus = status.str();
 	return playerstatus;
 }
+string Player::PrintEXPAndGold() {
+	string expGoldReturn;
+	expGoldReturn += "현재 EXP: " + to_string(exp) + "/" + to_string(PLAYER_MAX_EXP) + ", ";
+	expGoldReturn += "골드: " + to_string(gold);
+	return expGoldReturn;
+}
 
 void Player::UseItem(int itemIndex) {
 
 	if (itemIndex >= 0 && itemIndex < item.size()) {
 		if (itemIndex == 0) {
-			//item[0] = new HealthPotion
 			if((item[0]->GetCount())>0)
-				item[0]->Use(pl);
-				hp += 50;
-				if (hp > max_hp) {
-					hp = max_hp;
-				}
+				item[0]->Use(this);
 		}
 		else if (itemIndex == 1) {
-			//item[1] = new AttackBoost
 			if((item[1]->GetCount()>0))
-				item[1]->Use(pl);
-				extraatk = 10;
-		}// 수정
+				item[1]->Use(this);
+		}
 	}
 }
 
@@ -67,4 +69,30 @@ int Player::TakeDamage(int damage) {
 		hp = 0;
 
 	return hp;
+}
+
+void Player::AddItemByIndex(int addIndex) {
+	if (item[addIndex] == nullptr) {
+		if (addIndex == 0) {
+			item[addIndex] = new HealthPotion();
+		} else if (addIndex == 1) {
+			item[addIndex] = new AttackBoost();
+		}
+		return;
+	}
+
+	item[addIndex]->AddCount(1);
+}
+
+int Player::ReturnItemCount(int itemIndex) {
+	if (item[itemIndex] == nullptr) {
+		return 0;
+	}
+	return item[itemIndex]->GetCount();
+}
+
+string Player::GetItemName(int itemIndex) {
+	if (itemIndex == 0) return ITEM_HEALING_NAME;
+	else if (itemIndex == 1) return ITEM_BUFFDAMAGE_NAME;
+	return "";
 }
