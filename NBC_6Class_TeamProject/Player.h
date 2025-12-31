@@ -23,6 +23,7 @@ public:
 	Player();
 	Player(string name);
 
+	}
 	// - Todo : getter, setter 함수 선언 필요
 	string getName() const { return name; }
 	void setName(string name) { this->name = name; }

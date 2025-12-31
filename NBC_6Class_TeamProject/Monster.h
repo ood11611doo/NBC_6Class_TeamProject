@@ -1,28 +1,37 @@
 #pragma once
+#include <random>
+#include <string>
 
 using namespace std;
 
 class Monster {
 private:
-	// - Todo : 변수 선언 필요
-	// 
-	// string 값 이름 변수
-	// int값 몬스터 이름 가져온 인덱스
-	// int값 현재 체력
-	// int값 공격력
+	string MonsterName;
+	int MonsterNameIndex; // 나중에 질문
+
+	int MonsterHp;
+	int MonsterAttack;
+	// string RecentMonsterName; // 객체 사라지면 같이 삭제됨 --> 배틀매니저
+	// 둘내님 이거 매니저에 넣어주세요
 
 public:
-	// - Todo : 생성자
-	// int 플레이어 레벨값 기반으로 스탯이 설정되기 때문에
-	// 아래 미리 선언되어있는 Monster값을 cpp파일에서 정의해주세요
+
 	Monster(int plLevel);
 
-	// - Todo : getter, setter 함수 선언 필요
-	// 이름 함수 (getter, setter)
-	// 이름 인덱스 함수 (getter, setter)
-	// 현재 체력 함수 (getter, setter)
-	// 공격력 함수 (getter, setter)
+	string GetMonsterName() { return MonsterName; }
+	void SetMonsterName(string name) { MonsterName = name; }
 
-	// 기능 함수 선언됨 - 자세한 내용 정의는 cpp파일로
+	int GetMonsterNameIndex() { return MonsterNameIndex; }
+	void SetMonsetNameIndex(int index) { MonsterNameIndex = index; }
+	// 생성자에서 규칙에 의해 설정되는데 세터 필요?
+
+	int GetMonsterHp() { return MonsterHp; }
+	void SetMonsterHp(int hp) { MonsterHp = hp; } // 필요?
+	
+	int GetMonsterAttack() { return MonsterAttack; }
+	void SetMonsterAttack(int attack) { MonsterAttack = attack; }
+
 	int TakeDamage(int damage);
+
+	string PrintMonsterStatus();
 };
