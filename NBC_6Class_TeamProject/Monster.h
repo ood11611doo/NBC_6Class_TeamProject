@@ -2,13 +2,11 @@
 #include <random>
 #include <string>
 
-using namespace std;
-
-class Monster {
+// 몬스터의 
+class Monster {   // 함수는 대문자 시작, 변수는 소문자 시작
 private:
-	string MonsterName;
+	std::string MonsterName;
 	int MonsterNameIndex; // 나중에 질문
-
 	int MonsterHp;
 	int MonsterAttack;
 	// string RecentMonsterName; // 객체 사라지면 같이 삭제됨 --> 배틀매니저
@@ -16,14 +14,13 @@ private:
 
 public:
 
-	Monster(int plLevel);
+	Monster(int plLevel, std::string RecnetMonsterName);
 
-	string GetMonsterName() { return MonsterName; }
-	void SetMonsterName(string name) { MonsterName = name; }
+	std::string GetMonsterName() { return MonsterName; }
+	void SetMonsterName(std::string name) { MonsterName = name; }
 
 	int GetMonsterNameIndex() { return MonsterNameIndex; }
 	void SetMonsetNameIndex(int index) { MonsterNameIndex = index; }
-	// 생성자에서 규칙에 의해 설정되는데 세터 필요?
 
 	int GetMonsterHp() { return MonsterHp; }
 	void SetMonsterHp(int hp) { MonsterHp = hp; } // 필요?
@@ -33,5 +30,5 @@ public:
 
 	int TakeDamage(int damage);
 
-	string PrintMonsterStatus();
+	std::string PrintMonsterStatus();
 };
