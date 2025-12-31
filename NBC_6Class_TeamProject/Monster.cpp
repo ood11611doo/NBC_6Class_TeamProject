@@ -4,9 +4,10 @@
 
 using namespace std;
 
-Monster::Monster(int plLevel) {
+Monster::Monster(int plLevel, string RecentMonsterName) {
 	
 	// 직전 몬스터이름을 저장해서 해당 몬스터 이름과 같으면 다시 뽑기
+	bool SameWithRecentMonsterName; // 여기서만 쓰니까 굳이 멤버함수로 정의할 필요가 없음
 	do {
 		int randSize = rand() % monsterNames.size();
 		MonsterNameIndex = randSize;

@@ -7,22 +7,26 @@ using namespace std;
 
 class Player {
 private:
-	// - Todo : 변수 선언 필요
-	// 
-	// string 값 이름 변수
-	// int값 현재 레벨
-	// int값 현재 체력 / 최대 체력
-	// int값 공격력
-	// int값 현재 경험치
-	// int값 현재 골드
-	// vector - Item 클래스 배열값
+	//  vector - Item 클래스 배열값
 	//  vector에 클래스 담을 때 포인터값으로 담아도 됨. 동적 할당용?
+	string PlayerName = "";
+	int PlayerLevel = 1;
+	int PlayerMaxHealthPotion;
+	int PlayerHealthPotion;
+	int PlayerAttack;
+	int Gold = 0;
+	int PlayerExe = 0;
+	vector<Item*> V = vector<Item*>(10, nullptr); // V[0] = new HealthPotion; // V[0].Use();
 
 public:
-	// - Todo : 생성자
-	// 값 입력 받아서 만들어도 되지만
-	// 그럴 경우 기본 생성자도 만들어서 2종류 만들어주세요
+	Player(string name) : PlayerMaxHp(200), PlayerHp(200), PlayerAttack(30), V(10, nullptr) // 포션과 부스터 주소 넣어주기
+	{
+		PlayerName = name;
+	}
+	
+	~Player() {
 
+	}
 	// - Todo : getter, setter 함수 선언 필요
 	// 이름 함수 (getter, setter)
 	// 레벨 함수 (getter, setter)
