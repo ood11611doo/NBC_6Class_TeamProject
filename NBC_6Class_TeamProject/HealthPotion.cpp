@@ -29,5 +29,4 @@ void HealthPotion::Use(Player* InPlayer)
 	//	// 아니라면 newHealth값 적용
 	//	InPlayer->setHealth(newHealth);
 	//}
-	
 }

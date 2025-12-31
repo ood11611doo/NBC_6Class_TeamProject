@@ -19,6 +19,4 @@ void AttackBoost::Use(Player* InPlayer)
 	// int newExtraAttack = InPlayer->getExtraAttack() + attackIncrease;
 	// 플레이어의 ExtraAttack변수에 세터로 newAttack으로 변경
 	// InPlayer->setExtraAttack(newAttack);
-
-
 }
