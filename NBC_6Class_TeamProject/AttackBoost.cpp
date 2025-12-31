@@ -16,9 +16,10 @@ void AttackBoost::Use(Player* InPlayer)
 		SetCount(GetCount() - 1);
 	}
 
-	//임시 변수값 -> 플레이어의 현재 공격력 + attackIncrease을 게터와 attackIncrease의 합으로 임시 변수값에 저장
-	//int newAttack = InPlayer->getAttack() + attackIncrease;
-	//InPlayer->setHealth(newAttack);
+	// 임시 변수값 -> 플레이어의 현재 추가 공격력 + attackIncrease을 게터와 attackIncrease의 합으로 임시 변수값에 저장
+	// int newExtraAttack = InPlayer->getExtraAttack() + attackIncrease;
+	// 플레이어의 ExtraAttack변수에 세터로 newAttack으로 변경
+	// InPlayer->setExtraAttack(newAttack);
 
 
 }
