@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <vector>
 #include "Item.h"
@@ -7,33 +7,49 @@ using namespace std;
 
 class Player {
 private:
-	// - Todo : 변수 선언 필요
-	// 
-	// string 값 이름 변수
-	// int값 현재 레벨
-	// int값 현재 체력 / 최대 체력
-	// int값 공격력
-	// int값 현재 경험치
-	// int값 현재 골드
-	// vector - Item 클래스 배열값
-	//  vector에 클래스 담을 때 포인터값으로 담아도 됨. 동적 할당용?
+
+	string name;
+	int level;
+	int hp;
+	int max_hp;
+	int atkpower;
+	int extraatk;
+	int exp;
+	int gold;
+	vector <Item*> item = vector <Item*>(10, nullptr);
 
 public:
-	// - Todo : 생성자
-	// 값 입력 받아서 만들어도 되지만
-	// 그럴 경우 기본 생성자도 만들어서 2종류 만들어주세요
+
+	Player();
+	Player(string name);
 
 	// - Todo : getter, setter 함수 선언 필요
-	// 이름 함수 (getter, setter)
-	// 레벨 함수 (getter, setter)
-	// 최대 체력 함수 (getter, setter)
-	// 현재 체력 함수 (getter, setter)
-	// 공격력 함수 (getter, setter)
-	// 현재 경험치 함수 (getter, setter)
-	// 현재 골드 함수 (getter, setter)
-	// 현재 아이템 배열 함수 (getter)
+	string getName() const { return name; }
+	void setName(string name) { this->name = name; }
 
-	// 기능 함수 선언됨 - 자세한 내용 정의는 cpp파일로
+	int getLevel() const { return level; }
+	void setLevel(int level) { this->level = level; }
+
+	int getHp() const { return hp; }
+	void setHp(int hp) { this->hp = hp; }
+
+	int getMaxHp() const { return max_hp; }
+	void setMaxHp(int max_hp) { this->max_hp = max_hp; }
+
+	int getAtkPower() const { return atkpower; }
+	void setAtkPower(int atkpower) { this->atkpower = atkpower; }
+
+	int getExtraAtk() const { return extraatk; }
+	void setExtraAtk(int extraatk) { this->extraatk = extraatk; }
+
+	int getExp() const { return exp; }
+	void setExp(int exp) { this->exp = exp; }
+
+	int getGold() const { return gold; }
+	void setGold(int gold) { this->gold = gold; }
+
+	vector <Item*> getNumOfItem() const { return item; }
+
 	void CheckLevelUp();
 	string PrintPlayerStatus();
 	void UseItem(int itemIndex);
