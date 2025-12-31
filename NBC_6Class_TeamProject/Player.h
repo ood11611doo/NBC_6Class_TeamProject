@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <vector>
 #include "Item.h"
@@ -7,37 +7,50 @@ using namespace std;
 
 class Player {
 private:
-	//  vector - Item 클래스 배열값
-	//  vector에 클래스 담을 때 포인터값으로 담아도 됨. 동적 할당용?
-	string PlayerName = "";
-	int PlayerLevel = 1;
-	int PlayerMaxHealthPotion;
-	int PlayerHealthPotion;
-	int PlayerAttack;
-	int Gold = 0;
-	int PlayerExe = 0;
-	vector<Item*> V = vector<Item*>(10, nullptr); // V[0] = new HealthPotion; // V[0].Use();
+
+	string name;
+	int level;
+	int hp;
+	int max_hp;
+	int atkpower;
+	int extraatk;
+	int exp;
+	int gold;
+	vector <Item*> item = vector <Item*>(10, nullptr);
 
 public:
-	Player(string name) : PlayerMaxHp(200), PlayerHp(200), PlayerAttack(30), V(10, nullptr) // 포션과 부스터 주소 넣어주기
-	{
-		PlayerName = name;
-	}
-	
-	~Player() {
+
+	Player();
+	Player(string name);
 
 	}
 	// - Todo : getter, setter 함수 선언 필요
-	// 이름 함수 (getter, setter)
-	// 레벨 함수 (getter, setter)
-	// 최대 체력 함수 (getter, setter)
-	// 현재 체력 함수 (getter, setter)
-	// 공격력 함수 (getter, setter)
-	// 현재 경험치 함수 (getter, setter)
-	// 현재 골드 함수 (getter, setter)
-	// 현재 아이템 배열 함수 (getter)
+	string getName() const { return name; }
+	void setName(string name) { this->name = name; }
 
-	// 기능 함수 선언됨 - 자세한 내용 정의는 cpp파일로
+	int getLevel() const { return level; }
+	void setLevel(int level) { this->level = level; }
+
+	int getHp() const { return hp; }
+	void setHp(int hp) { this->hp = hp; }
+
+	int getMaxHp() const { return max_hp; }
+	void setMaxHp(int max_hp) { this->max_hp = max_hp; }
+
+	int getAtkPower() const { return atkpower; }
+	void setAtkPower(int atkpower) { this->atkpower = atkpower; }
+
+	int getExtraAtk() const { return extraatk; }
+	void setExtraAtk(int extraatk) { this->extraatk = extraatk; }
+
+	int getExp() const { return exp; }
+	void setExp(int exp) { this->exp = exp; }
+
+	int getGold() const { return gold; }
+	void setGold(int gold) { this->gold = gold; }
+
+	vector <Item*> getNumOfItem() const { return item; }
+
 	void CheckLevelUp();
 	string PrintPlayerStatus();
 	void UseItem(int itemIndex);
