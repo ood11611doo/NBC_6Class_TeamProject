@@ -4,23 +4,51 @@
 
 using namespace std;
 
-Monster::Monster(int plLevel) {
-	// - Todo : 생성자 정의 필요
-	// 몬스터 스탯 설정 필요
-	//  생성할 때 플레이어 레벨 기반으로 스탯 설정이 되기 때문에
-	// 플레이어 레벨값을 무조건 받아서 몬스터를 생성하는 식이 필요
-	// int randSize = rand() % monsterNames.size();
-	// ㄴ이 위 식이 vector 랜덤 인덱스를 뽑아주니, 그걸로 사용하면 됨
+Monster::Monster(int plLevel, string RecentMonsterName) {
+	
+	// 직전 몬스터이름을 저장해서 해당 몬스터 이름과 같으면 다시 뽑기
+	bool SameWithRecentMonsterName; // 여기서만 쓰니까 굳이 멤버함수로 정의할 필요가 없음
+	do {
+		int randSize = rand() % monsterNames.size();
+		MonsterNameIndex = randSize;
+		MonsterName = monsterNames[MonsterNameIndex]; // 랜덤 몬스터 생성
+
+		SameWithRecentMonsterName = false;
+
+		if (MonsterName == RecentMonsterName) {
+			SameWithRecentMonsterName = true;
+		}
+
+	} while (SameWithRecentMonsterName);
+
+
+	int RandomValueHp = rand() % (11) + 20;
+	MonsterHp = plLevel * RandomValueHp;
+	int RandomValueAttack = rand() % (6) + 5;
+	MonsterAttack = plLevel * RandomValueAttack;
+
 }
 
+
 int Monster::TakeDamage(int damage) {
-	// - Todo : 기능 함수 정의 필요
-	// 체력 감소를 해당 함수에서 진행
-	// 그 후, 몬스터의 남은 체력을 return
-	// 0 이하면 0으로 return
+	
+	MonsterHp -= damage;
+	
+	if (MonsterHp <= 0) {
+		MonsterHp = 0;
+		RecentMonsterName = MonsterName;
 
+		return MonsterHp;
+	}
 
+	return MonsterHp;
+}
 
-	// 다 만든 후에 아래 더미 return값은 지우면 됨!
-	return 0;
+string Monster::PrintMonsterStatus() {
+	string ReturnString = "";
+	ReturnString += "몬스터 " + MonsterName + "등장!\n";
+	ReturnString += "현재 체력: " + to_string(MonsterHp) + "\n";
+	ReturnString += "공격력: " + to_string(MonsterAttack) + "\n";
+
+	return ReturnString;
 }

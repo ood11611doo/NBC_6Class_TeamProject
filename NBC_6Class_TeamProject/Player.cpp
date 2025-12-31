@@ -3,21 +3,28 @@
 using namespace std;
 
 void Player::CheckLevelUp() {
-	// - Todo : 기능 함수 정의 필요
-	// 레벨업 계산 함수
-	//  레벨업 함수 하나에서 경험치가 일정 이상인지 계산을 한 후에
-	//  레벨업을 바로 실행시켜도 되고, 아니면 경험치 계산용 함수를
-	//  새로 만들어도 됩니다.
+	PlayerExe += 50;
+
+	if (PlayerExe >= 100) {
+		PlayerExe -= 100;
+		PlayerLevel += 1;
+		PlayerMaxHealthPotuin += PlayerLevel * 20;
+		PlayerHealthPotion = PlayerMaxHealthPotion;
+		PlayerAttack += PlayerLevel * 5;
+	}
 }
 
 string Player::PrintPlayerStatus() {
-	// - Todo : 기능 함수 정의 필요
-	// string 만들어서, 여기에 스탯 출력 메시지 반환해주시면 됩니다
+	string PlayerStatus;
+	PlayerStatus += "이름: " + PlayerName + "\n";
+	PlayerStatus += "레벨: " + PlayerLevel + "\n";
+	PlayerStatus += "최대 체력: " + PlayerMaxHealthPotion + "\n";
+	PlayerStatus += "현재 체력: " + PlayerHealthPotuin + "\n";
+	PlayerStatus += "공격력: " + PlayerAttack + "\n";
+	PlayerStatus += "골드: " + Gold + "\n";
+	PlayerStatus += "경험치: " + PlayerExe + "/100" + "\n";
 	
-
-
-	// 다 만든 후에 아래 더미 return값은 지우면 됨!
-	return "";
+	return PlayerStatus;
 }
 
 void Player::UseItem(int itemIndex) {
@@ -27,16 +34,17 @@ void Player::UseItem(int itemIndex) {
 	// 아니면 배열 인덱스를 받거나 해서 해당 아이템을 없애는 것 까지는
 	// 여기서 계산을 해줘야할듯?
 	// Item에서 Use를 한 다음에 없애야함!
+
 }
 
 int Player::TakeDamage(int damage) {
-	// - Todo : 기능 함수 정의 필요
-	// 체력 감소를 해당 함수에서 진행
-	// 그 후, 플레이어의 남은 체력을 return
-	// 0 이하면 0으로 return
 
-
-
-	// 다 만든 후에 아래 더미 return값은 지우면 됨!
-	return 0;
+	if (PlayerHp > 0) {
+		PlayerHp -= damage;
+	}
+	else if (PlayerHp <= 0) {
+		PlayerHp = 0;
+		retuen 0;
+	}
+	return PlayerHp;
 }
