@@ -6,15 +6,14 @@ using namespace std;
 
 class BattleSystem {
 private:
-	// - Todo : º¯¼ö ¼±¾ğ ÇÊ¿ä
-	// Monster Æ÷ÀÎÅÍ º¯¼ö - ÇÔ¼ö¿¡¼­ ¾Ë¾Æ¼­ ¸¸µé°í Áö¿ì¼À
+	Monster* monster_;
 
 public:
-	// - Todo : »ı¼ºÀÚ / ¼Ò¸êÀÚ
-	// - Todo : getter, setter
+	BattleSystem();
+	~BattleSystem();
 
-	// ±â´É ÇÔ¼ö ¼±¾ğµÊ - ÀÚ¼¼ÇÑ ³»¿ë Á¤ÀÇ´Â cppÆÄÀÏ·Î
-	void GenerateMonster(int plLevel);
-	bool Battle(Player* pl);
-	void DeleteMonster();
+	// ê¸°ëŠ¥ í•¨ìˆ˜ ì„ ì–¸ë¨ - ìì„¸í•œ ë‚´ìš© ì •ì˜ëŠ” cppíŒŒì¼ë¡œ
+	void GenerateMonster(int plLevel); // ëª¬ìŠ¤í„° ìƒì„±
+	bool Battle(Player* pl); // ì „íˆ¬: true=í”Œë ˆì´ì–´ ìŠ¹ë¦¬, false=í”Œë ˆì´ì–´ íŒ¨ë°°
+	void DeleteMonster(); // ëª¬ìŠ¤í„° ì‚­ì œ
 };
