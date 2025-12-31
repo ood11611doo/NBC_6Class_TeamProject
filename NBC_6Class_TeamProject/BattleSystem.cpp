@@ -2,6 +2,6 @@
 
 using namespace std;
 
-// Battle - ½ÃÀÛÇÒ ¶§ ¸ó½ºÅÍ ¾øÀ¸¸é »ý¼ºÇÏ°í ½ÃÀÛ (exception ¹æÁö¿ë)
-// ³Ê ¶§¸®°í ³ª ¶§¸®°í ¹ø°¥¾Æ°¡¸é¼­ ¹èÆ²ÇÔ
-// ¹èÆ² ³¡³ª¸é, bool°ª ÇØ¼­ ÇÃ·¹ÀÌ¾î°¡ ÀÌ°åÀ¸¸é true, Á³À¸¸é false Á» Ãâ·Â ºÎÅ¹
+// Battle - ì‹œìž‘í•  ë•Œ ëª¬ìŠ¤í„° ì—†ìœ¼ë©´ ìƒì„±í•˜ê³  ì‹œìž‘ (exception ë°©ì§€ìš©)
+// ë„ˆ ë•Œë¦¬ê³  ë‚˜ ë•Œë¦¬ê³  ë²ˆê°ˆì•„ê°€ë©´ì„œ ë°°í‹€í•¨
+// ë°°í‹€ ëë‚˜ë©´, boolê°’ í•´ì„œ í”Œë ˆì´ì–´ê°€ ì´ê²¼ìœ¼ë©´ true, ì¡Œìœ¼ë©´ false ì¢€ ì¶œë ¥ ë¶€íƒ

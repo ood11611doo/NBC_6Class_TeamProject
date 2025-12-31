@@ -27,10 +27,10 @@ constexpr const int ITEM_HEALING_VALUE = 50;
 constexpr const int ITEM_BUFFDAMAGE_VALUE = 10;
 
 const vector<string> monsterNames = {
-	"°íºí¸°",
-	"µ¶°Å¹Ì",
-	"½ºÄÌ·¹Åæ",
-	"½½¶óÀÓ",
-	"¿ÀÅ©",
-	"ÄÚº¼Æ®"
+	"ê³ ë¸”ë¦°",
+	"ë…ê±°ë¯¸",
+	"ìŠ¤ì¼ˆë ˆí†¤",
+	"ìŠ¬ë¼ìž„",
+	"ì˜¤í¬",
+	"ì½”ë³¼íŠ¸"
 };
