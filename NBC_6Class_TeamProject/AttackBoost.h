@@ -14,8 +14,7 @@ public:
 		: name(ITEM_BUFFDAMAGE_NAME),
 		attackIncrease(ITEM_BUFFDAMAGE_VALUE),
 		price(ITEM_BUFFDAMAGE_PRICE),
-		count(1) {
-	}
+		count(1) {}
 
 	std::string GetName() const override { return name; }
 

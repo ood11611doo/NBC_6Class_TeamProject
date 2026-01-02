@@ -9,8 +9,6 @@ private:
 	int MonsterHp;
 	int MonsterAttack;
 	bool isBossMonster; // 보스인지 확인하는 플래그
-	// string RecentMonsterName; // 객체 사라지면 같이 삭제됨 --> 배틀매니저
-	// 둘내님 이거 매니저에 넣어주세요
 
 public:
 
