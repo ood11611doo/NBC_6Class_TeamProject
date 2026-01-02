@@ -16,9 +16,7 @@ public:
 
 	Monster* GetMonster() { return monster_; }
 	const vector<BattleRecord*> GetBattleRecords() { return battleRecords; }
-	const int GetExpReward() { return battleReward->exp; }
-	const int GetGoldReward() { return battleReward->gold; }
-	const int GetItemReward() { return battleReward->itemIndex; }
+	const BattleReward* GetBattleReward() { return battleReward; }
 
 	void GenerateMonster(int plLevel);
 	bool Battle(Player* pl); // 전투: true=플레이어 승리, false=플레이어 패배
