@@ -14,8 +14,7 @@ public:
 		name(ITEM_HEALING_NAME),
 		healthRestore(ITEM_HEALING_VALUE),
 		price(ITEM_HEALING_PRICE),
-		count(1) {
-	}
+		count(1) {}
 
 	std::string GetName() const override { return name; }
 
