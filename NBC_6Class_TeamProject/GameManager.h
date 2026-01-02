@@ -41,8 +41,6 @@ public:
 
     bool StartBattle();
     const vector<BattleRecord*> GetBattleLog() { return battleSystem->GetBattleRecords(); }
-    const int GetExpReward() { return battleSystem->GetExpReward(); }
-    const int GetGoldReward() { return battleSystem->GetGoldReward(); }
-    const int GetItemReward() { return battleSystem->GetItemReward(); }
+    const BattleReward* GetBattleRewards() { return battleSystem->GetBattleReward(); }
     void AfterBattle();
 };
