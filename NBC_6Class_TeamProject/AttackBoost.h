@@ -1,28 +1,37 @@
-#pragma once
+﻿#pragma once
 #include "Item.h"
-
-
-using namespace std;
 
 class AttackBoost : public Item {
 private:
-	string name;
+	std::string name;
 	int attackIncrease;
-	// Todo : 아이템 가격 변수 생성 필요
+	int price; // Todo : 아이템 가격 변수 생성
 	int count = 0;
+
 public:
-	// Todo : 아이템을 생성할 때, 해당 아이템의 가격 변수값도 설정할 수 있도록
-	AttackBoost() : name(ITEM_BUFFDAMAGE_NAME), attackIncrease(ITEM_BUFFDAMAGE_VALUE), count(1) {}
-	string GetName() const override { return name; }
-	// Todo : 가상함수 override받은 가격을 return해주는 함수 생성
-	int GetCount() const { return count; }
+	// 생성자에서 아이템 가격 설정
+	AttackBoost()
+		: name(ITEM_BUFFDAMAGE_NAME),
+		attackIncrease(ITEM_BUFFDAMAGE_VALUE),
+		price(ITEM_BUFFDAMAGE_PRICE),
+		count(1) {
+	}
+
+	std::string GetName() const override { return name; }
+
+	// 가상함수 override받은 가격을 return
+	int GetPrice() const override { return price; }
+	int GetCount() const override { return count; }
+
 	int SetCount(int InCount) override {
 		count = InCount;
 		return count;
 	}
+
 	int AddCount(int InCount) override {
 		count += InCount;
 		return count;
 	}
+
 	void Use(Player* InPlayer) override;
 };
