@@ -74,7 +74,7 @@ bool BattleSystem::Battle(Player* pl) {
     int itemGetIndex = -1;
 
     int dropRoll = (rand() % 100) + 1;
-    if (dropRoll <= 30) {
+    if (dropRoll <= MONSTER_REWARD_ITEM_CHANCE) {
         int itemIndex = rand() % 2;
         if (itemIndex == 0) {
             pl->AddItemByIndex(0);

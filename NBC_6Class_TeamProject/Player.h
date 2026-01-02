@@ -20,6 +20,8 @@ public:
 
 	Player();
 	Player(std::string name);
+	~Player();
+	
 
 	// - Todo : getter, setter 함수 선언 필요
 	std::string getName() const { return name; }

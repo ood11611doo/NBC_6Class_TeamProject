@@ -18,6 +18,13 @@ Player::Player(string name) : level(1), hp(200), max_hp(200), atkpower(30), extr
 	this->name = name;
 	item = vector<Item*>(10, nullptr);
 }
+Player::~Player() {
+	for (const auto& items : item) {
+		if (items != nullptr) {
+			delete items;
+		}
+	}
+}
 
 void Player::CheckLevelUp() {
 	//exp += 50;

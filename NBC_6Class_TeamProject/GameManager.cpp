@@ -13,16 +13,6 @@ GameManager::~GameManager() {
     delete logSystem;
 }
 
-void GameManager::SetPlayerName(string name) {
-    player->setName(name);
-}
-string GameManager::ViewPlayerStatus() {
-    return player->PrintPlayerStatus();
-}
-
-void GameManager::CreateMonster() {
-    battleSystem->GenerateMonster(player->getLevel());
-}
 string GameManager::GetMonsterName() {
     if (battleSystem->GetMonster() != nullptr)
         return battleSystem->GetMonster()->GetMonsterName();

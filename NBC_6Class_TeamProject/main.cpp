@@ -43,11 +43,12 @@ int main() {
     string playerName = GetUTFInput();
     GameManager::Get().SetPlayerName(playerName);
     cout << "캐릭터 " << playerName << " 생성 완료!" << endl;
-    cout << GameManager::Get().ViewPlayerStatus() << endl;
+    cout << GameManager::Get().PrintPlayerStatus() << endl;
     cout << "계속하려면 Enter 키를 누르세요..." << endl;
     GetEnterInput();
 
-    while (true) {
+    bool gameExitCheck = false;
+    while (!gameExitCheck) {
         Sleep(500);
         system("cls");
         GameManager::Get().CreateMonster();
@@ -60,8 +61,7 @@ int main() {
             case RecordType::playerAttack:
                 if (record->data > 0) {
                     cout << playerName << "가 " << monsterName << "을 공격합니다! " << monsterName << " 체력: " << record->data << endl;
-                }
-                else {
+                } else {
                     cout << playerName << "가 " << monsterName << "을 공격합니다! " << monsterName << " 처치!" << endl;
                 }
                 break;
@@ -73,6 +73,8 @@ int main() {
                 break;
             case RecordType::monsterAttack:
                 cout << monsterName << "가 " << playerName << "을 공격합니다! " << playerName << " 체력: " << record->data << endl;
+                break;
+            default:
                 break;
             }
         }
@@ -86,7 +88,7 @@ int main() {
                 string itemName = GameManager::Get().GetPlayerItemName(itemReward);
                 cout << playerName << "가 " << itemName << " 아이템을 획득했습니다!" << endl;
             }
-            cout << GameManager::Get().ViewPlayerEXPAndGold() << endl << endl;
+            cout << GameManager::Get().PrintPlayerEXPAndGold() << endl << endl;
             GameManager::Get().AfterBattle();
 
             choiceLoop:
@@ -96,32 +98,33 @@ int main() {
             cout << "9. 킬로그 확인" << endl;
             cout << "0. 게임 종료" << endl;
             cout << "선택: ";
+            choiceAnotherLoop:
             int choice;
             cin >> choice;
-            if (choice == 1) {
+            switch (choice) {
+            case 1:
                 system("cls");
-                cout << GameManager::Get().ViewPlayerStatus() << endl << endl;
+                cout << GameManager::Get().PrintPlayerStatus() << endl << endl;
                 goto choiceLoop;
-            }
-            else if (choice == 2) {
-                continue;
-            }
-            else if (choice == 9) {
+            case 2:
+                break;
+            case 9:
                 system("cls");
                 cout << GameManager::Get().GetKillLog() << endl << endl;
                 goto choiceLoop;
-            }
-            else if (choice == 0) {
+            case 0:
                 cout << "게임을 종료합니다." << endl;
+                gameExitCheck = true;
                 break;
+            default:
+                cout << "올바른 선택지가 아닙니다. 다시 입력해주세요." << endl;
+                cout << "선택: ";
+                goto choiceAnotherLoop;
             }
-        }
-        else {
+        } else {
             cout << playerName << "가 사망했습니다. 게임 오버!" << endl;
             break;
         }
-
-        GetEnterInput();
     }
 
 	return 0;

@@ -17,6 +17,7 @@ private:
     LogSystem* logSystem;
 
 public:
+    // C++ Singleton
     static GameManager& Get() {
         static GameManager instance;
         return instance;
@@ -27,13 +28,13 @@ public:
     BattleSystem* GetBattleSystem() { return battleSystem; }
     LogSystem* GetLogSystem() { return logSystem; }
 
-    void SetPlayerName(string name);
+    void SetPlayerName(string name) { player->setName(name); }
     string GetPlayerName() { return player->getName(); }
-    string ViewPlayerStatus();
-    string ViewPlayerEXPAndGold() { return player->PrintEXPAndGold(); }
+    string PrintPlayerStatus() { return player->PrintPlayerStatus(); }
+    string PrintPlayerEXPAndGold() { return player->PrintEXPAndGold(); }
     string GetPlayerItemName(int itemIndex) { return player->GetItemName(itemIndex); }
 
-    void CreateMonster();
+    void CreateMonster() { battleSystem->GenerateMonster(player->getLevel()); }
     string GetMonsterName();
     string GetMonsterGen();
     string GetKillLog() { return logSystem->GetKillCount(); }
