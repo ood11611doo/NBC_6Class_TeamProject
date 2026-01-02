@@ -39,7 +39,7 @@ string GameManager::GetMonsterGen() {
 bool GameManager::StartBattle() {
     bool battleResult = battleSystem->Battle(player);
     if (battleResult) {
-        // logSystem->AddKill(battleSystem->GetMonster()->GetNameIndex());
+        logSystem->AddKill(battleSystem->GetMonster()->GetMonsterName());
     }
 
     return battleResult;

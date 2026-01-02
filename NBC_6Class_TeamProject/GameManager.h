@@ -36,6 +36,7 @@ public:
     void CreateMonster();
     string GetMonsterName();
     string GetMonsterGen();
+    string GetKillLog() { return logSystem->GetKillCount(); }
 
     bool StartBattle();
     const vector<BattleRecord*> GetBattleLog() { return battleSystem->GetBattleRecords(); }

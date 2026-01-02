@@ -5,7 +5,6 @@
 class Monster {
 private:
 	std::string MonsterName;
-	int MonsterNameIndex; // 나중에 질문
 	int MonsterHp;
 	int MonsterAttack;
 	// string RecentMonsterName; // 객체 사라지면 같이 삭제됨 --> 배틀매니저
@@ -17,9 +16,6 @@ public:
 
 	std::string GetMonsterName() { return MonsterName; }
 	void SetMonsterName(std::string name) { MonsterName = name; }
-
-	int GetMonsterNameIndex() { return MonsterNameIndex; }
-	void SetMonsetNameIndex(int index) { MonsterNameIndex = index; }
 
 	int GetMonsterHp() { return MonsterHp; }
 	void SetMonsterHp(int hp) { MonsterHp = hp; } // 필요?

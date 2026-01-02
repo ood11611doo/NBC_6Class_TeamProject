@@ -89,10 +89,11 @@ int main() {
             cout << GameManager::Get().ViewPlayerEXPAndGold() << endl << endl;
             GameManager::Get().AfterBattle();
 
-        choiceLoop:
+            choiceLoop:
 
             cout << "1. 플레이어 상태 확인" << endl;
             cout << "2. 계속 진행" << endl;
+            cout << "9. 킬로그 확인" << endl;
             cout << "0. 게임 종료" << endl;
             cout << "선택: ";
             int choice;
@@ -104,6 +105,11 @@ int main() {
             }
             else if (choice == 2) {
                 continue;
+            }
+            else if (choice == 9) {
+                system("cls");
+                cout << GameManager::Get().GetKillLog() << endl << endl;
+                goto choiceLoop;
             }
             else if (choice == 0) {
                 cout << "게임을 종료합니다." << endl;

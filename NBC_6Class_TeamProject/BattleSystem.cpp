@@ -86,6 +86,9 @@ bool BattleSystem::Battle(Player* pl) {
     }
 
     battleReward = new BattleReward();
+    battleReward->exp = expAdded;
+    battleReward->gold = goldAdded;
+    battleReward->itemIndex = itemGetIndex;
 
     pl->addExp(expAdded);
     pl->addGold(goldAdded);

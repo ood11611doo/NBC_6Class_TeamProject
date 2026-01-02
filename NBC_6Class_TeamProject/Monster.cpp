@@ -7,8 +7,7 @@ Monster::Monster(int plLevel, std::string RecentMonsterName) {
 	bool SameWithRecentMonsterName;
 	do {
 		int randSize = rand() % monsterNames.size();
-		MonsterNameIndex = randSize;
-		MonsterName = monsterNames[MonsterNameIndex];
+		MonsterName = monsterNames[randSize];
 
 		SameWithRecentMonsterName = false;
 

@@ -35,8 +35,13 @@ void Player::CheckLevelUp() {
 string Player::PrintPlayerStatus() {
 	stringstream status;
 	status << "이름:" << name << " | 레벨:" << level << " | 현재 체력:" << hp << "/" << max_hp;
-	status << " | 공격력:" << atkpower + extraatk << " | 경험치:" << exp << " | 현재 골드:" << gold;
+	status << " | 공격력:" << atkpower + extraatk << " | 경험치:" << exp << " | 현재 골드:" << gold << "\n";
 	//아이템 출력 추가되야?
+	for (const auto& itemIn : item) {
+		if (itemIn != nullptr && itemIn->GetCount() > 0) {
+			status << itemIn->GetName() << ": " << itemIn->GetCount() << "\n";
+		}
+	}
 	
 	string playerstatus = status.str();
 	return playerstatus;
