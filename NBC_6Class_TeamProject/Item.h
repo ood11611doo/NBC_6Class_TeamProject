@@ -17,6 +17,7 @@ public:
 	virtual ~Item() = default;
 
 	virtual std::string GetName() const = 0;
+	virtual int GetPrice() const = 0;
 	virtual int GetCount() const = 0;
 	virtual int SetCount(int InCount) = 0;
 	virtual int AddCount(int InCount) = 0;

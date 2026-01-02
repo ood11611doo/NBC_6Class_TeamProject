@@ -37,10 +37,14 @@ constexpr const int MONSTER_REWARD_ITEM_CHANCE = 30;
 
 // ----- Item related values -----
 constexpr const char* ITEM_HEALING_NAME = "회복 물약";
+constexpr const int ITEM_HEALING_PRICE = 20;
 constexpr const int ITEM_HEALING_VALUE = 50;
 
 constexpr const char* ITEM_BUFFDAMAGE_NAME = "공격력 강화 물약";
+constexpr const int ITEM_BUFFDAMAGE_PRICE = 30;
 constexpr const int ITEM_BUFFDAMAGE_VALUE = 10;
+
+constexpr const float ITEM_SELL_PRICE = 0.6f;
 
 enum RecordType {
 	playerAttack,
