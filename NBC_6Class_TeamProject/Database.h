@@ -67,3 +67,9 @@ const vector<string> monsterNames = {
 	"오크",
 	"코볼트"
 };
+
+const vector<string> bossNames = {
+	"홉고블린",
+	"오크 제너럴",
+	"보스 몬스터임"
+};
