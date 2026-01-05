@@ -44,7 +44,7 @@ constexpr const char* ITEM_BUFFDAMAGE_NAME = "공격력 강화 물약";
 constexpr const int ITEM_BUFFDAMAGE_PRICE = 30;
 constexpr const int ITEM_BUFFDAMAGE_VALUE = 10;
 
-constexpr const float ITEM_SELL_PRICE = 0.6f;
+constexpr const float ITEM_SELL_PRICE_RATIO = 0.6f;
 
 enum RecordType {
 	playerAttack,
