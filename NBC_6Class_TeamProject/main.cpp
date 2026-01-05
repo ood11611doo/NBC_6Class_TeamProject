@@ -1,4 +1,4 @@
-#include <Windows.h>
+﻿#include <Windows.h>
 #include <iostream>
 #include "GameManager.h"
 #include "StreamManager.h"
@@ -37,7 +37,7 @@ BattleType BattlePrint(string plName) {
 
 void ShopPrint() {
     bool isEscapeShop = false;
-
+    
     while (!isEscapeShop) {
         cout << StreamManager::PrintText_ViewShopSelection();
         cout << StreamManager::PrintText_InputSelection();
@@ -64,7 +64,8 @@ void ShopPrint() {
                 break;
             case 0:
                 StreamManager::ClearScreen();
-                ShopPrint();
+                // 여기서 shopPrint() 부분이 재귀적으로 사용되면서 스택으로 쌓이기 때문에 0번을 두번입력해야 shop에서 완전 나올 수 있음
+                //ShopPrint(); 주석처리로 지우기만 해도 어차피 스위치문 나가서 while문이 돌아가기 때문에 해결
                 break;
 
             case 1:
@@ -96,7 +97,7 @@ void ShopPrint() {
                 break;
             case 0:
                 StreamManager::ClearScreen();
-                ShopPrint();
+                // ShopPrint(); 여기도 위와 같은 이유
                 break;
             case 1:
             case 2:
@@ -127,7 +128,7 @@ void ShopPrint() {
 
 int main() {
     SetConsoleOutputCP(65001);
-
+    srand(time(nullptr));
     cout << StreamManager::PrintText_InputName();
     string playerName = StreamManager::GetUTF8Input();
     GameManager::Get().SetPlayerName(playerName);
