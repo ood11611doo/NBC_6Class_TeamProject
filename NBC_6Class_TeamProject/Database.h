@@ -44,7 +44,29 @@ constexpr const char* ITEM_BUFFDAMAGE_NAME = "공격력 강화 물약";
 constexpr const int ITEM_BUFFDAMAGE_PRICE = 30;
 constexpr const int ITEM_BUFFDAMAGE_VALUE = 10;
 
-constexpr const float ITEM_SELL_PRICE = 0.6f;
+constexpr const float ITEM_SELL_PRICE_RATIO = 0.6f;
+
+int GetBasicPrice(int index) {
+	switch (index) {
+	case 0:
+		return ITEM_HEALING_PRICE;
+	case 1:
+		return ITEM_BUFFDAMAGE_PRICE;
+	}
+
+	return 0;
+}
+
+int GetCellPrice(int index) {
+	switch (index) {
+	case 0:
+		return (int)((float)ITEM_HEALING_PRICE * ITEM_SELL_PRICE_RATIO);
+	
+	case 1:
+		return (int)((float)ITEM_BUFFDAMAGE_PRICE * ITEM_SELL_PRICE_RATIO);
+	}
+	return 0;
+}
 
 enum RecordType {
 	playerAttack,
