@@ -36,30 +36,93 @@ BattleType BattlePrint(string plName) {
 }
 
 void ShopPrint() {
-    cout << StreamManager::PrintText_ViewShopSelection();
+    bool isEscapeShop = false;
 
-    int choiceCheck;
-    cin >> choiceCheck;
+    while (!isEscapeShop) {
+        cout << StreamManager::PrintText_ViewShopSelection();
+        cout << StreamManager::PrintText_InputSelection();
 
-    switch (choiceCheck) {
-    default:
-        break;
-    case 0:
-        break;
+        int choiceCheck;
+        cin >> choiceCheck;
 
-    case 1: {
-        int cinGet;
-        cout << StreamManager::PrintText_ViewShopBuy();
+        switch (choiceCheck) {
+        default:
+            break;
+        case 0:
+            isEscapeShop = true;
+            break;
+
+        case 1: {
+            int shopInnerGet;
+            cout << endl;
+            cout << StreamManager::PrintText_ViewShopBuy() << endl;
+            cout << StreamManager::PrintText_InputSelection();
+            cin >> shopInnerGet;
+            switch (shopInnerGet)
+            {
+            default:
+                break;
+            case 0:
+                StreamManager::ClearScreen();
+                ShopPrint();
+                break;
+
+            case 1:
+            case 2:
+                int realIndex = shopInnerGet - 1;
+                cout << endl;
+                cout << StreamManager::PrintText_ViewShopCount(true) << endl;
+                cout << StreamManager::PrintText_InputSelection(true);
+                int shopBuyCount;
+                cin >> shopInnerGet;
+                bool isSuccess = GameManager::Get().TryBuyItem(realIndex, shopInnerGet);
+                cout << StreamManager::PrintText_ViewShopIsSuccess(true, isSuccess) << endl;
+                isEscapeShop = isSuccess;
+                StreamManager::WaitForEnter();
+                break;
+            }
+        }
+              break;
+        case 2: {
+            int shopInnerGet;
+            vector<Item*> plItemGet = GameManager::Get().GetPlayerItems();
+            cout << endl;
+            cout << StreamManager::PrintText_ViewShopSell(plItemGet) << endl;
+            cout << StreamManager::PrintText_InputSelection();
+            cin >> shopInnerGet;
+            switch (shopInnerGet)
+            {
+            default:
+                break;
+            case 0:
+                StreamManager::ClearScreen();
+                ShopPrint();
+                break;
+            case 1:
+            case 2:
+                int realIndex = shopInnerGet - 1;
+                if (plItemGet[realIndex] == nullptr) {
+                    StreamManager::PrintText_WrongSelection();
+                    break;
+                }
+
+                cout << endl;
+                cout << StreamManager::PrintText_ViewShopCount(false) << endl;
+                cout << StreamManager::PrintText_InputSelection(true);
+                int shopBuyCount;
+                cin >> shopInnerGet;
+                bool isSuccess = GameManager::Get().TrySellItem(realIndex, shopInnerGet);
+                cout << StreamManager::PrintText_ViewShopIsSuccess(false, isSuccess) << endl;
+                isEscapeShop = isSuccess;
+                StreamManager::WaitForEnter();
+                break;
+            }
+        }
+              break;
+        }
+
+        StreamManager::ClearScreen();
     }
-        break;
-    case 2: {
-        int cinGet;
-
-    }
-        break;
-    }
-
-    StreamManager::ClearScreen();
 }
 
 int main() {

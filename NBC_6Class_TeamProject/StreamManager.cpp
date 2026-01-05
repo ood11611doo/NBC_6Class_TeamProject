@@ -32,8 +32,8 @@ string StreamManager::GetUTF8Input() {
 string StreamManager::PrintText_InputName() {
     return "캐릭터 이름을 입력하세요: ";
 }
-string StreamManager::PrintText_InputSelection() {
-    return "선택: ";
+string StreamManager::PrintText_InputSelection(bool isCounting) {
+    return isCounting ? "입력: " : "선택: ";
 }
 string StreamManager::PrintText_ViewSelection() {
     stringstream ss;
@@ -58,6 +58,17 @@ string StreamManager::PrintText_ViewShopBuy() {
     ss << "1. " << ITEM_HEALING_NAME << endl;
     ss << "2. " << ITEM_BUFFDAMAGE_NAME << endl;
     ss << "0. 돌아가기" << endl;
+    return ss.str();
+}
+string StreamManager::PrintText_ViewShopCount(bool isBuy) {
+    string nameCheck = isBuy ? "구매" : "판매";
+    return "---- 아이템 " + nameCheck + " 수량 입력 ----";
+}
+string StreamManager::PrintText_ViewShopIsSuccess(bool isBuy, bool isSuccess) {
+    stringstream ss;
+    string nameCheck = isBuy ? "구매" : "판매";
+    string successCheck = isSuccess ? "성공" : "실패";
+    ss << "아이템 " << nameCheck << "에 " << successCheck << "했습니다.";
     return ss.str();
 }
 string StreamManager::PrintText_WrongSelection() {

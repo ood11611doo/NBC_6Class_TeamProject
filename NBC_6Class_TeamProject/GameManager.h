@@ -42,7 +42,10 @@ public:
     string GetKillLog() { return logSystem->GetKillCount(); }
 
     bool StartBattle();
-    const vector<BattleRecord*> GetBattleLog() { return battleSystem->GetBattleRecords(); }
+    const std::vector<BattleRecord*> GetBattleLog() { return battleSystem->GetBattleRecords(); }
     const BattleReward* GetBattleRewards() { return battleSystem->GetBattleReward(); }
     void AfterBattle();
+
+    bool TryBuyItem(int itemIndex_, int buyCount_);
+    bool TrySellItem(int itemIndex_, int sellCount_);
 };

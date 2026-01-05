@@ -53,7 +53,7 @@ public:
 	int getGold() const { return gold; }
 	void setGold(int gold) { this->gold = gold; }
 
-	vector<Item*> getNumOfItem() const { return item; }
+	const vector<Item*> getNumOfItem() { return item; }
 
 	void CheckLevelUp();
 	std::string PrintPlayerStatus();

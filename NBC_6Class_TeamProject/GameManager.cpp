@@ -48,3 +48,11 @@ void GameManager::AfterBattle() {
     battleSystem->DeleteMonster();
     battleSystem->ClearLog();
 }
+
+bool GameManager::TryBuyItem(int itemIndex_, int buyCount_) {
+    return marketSystem->BuyItem(player, itemIndex_, buyCount_);
+}
+
+bool GameManager::TrySellItem(int itemIndex_, int sellCount_) {
+    return marketSystem->SellItem(player, itemIndex_, sellCount_);
+}

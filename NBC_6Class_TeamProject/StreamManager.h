@@ -17,10 +17,12 @@ public:
 
     // Single calling without inputs
     static std::string PrintText_InputName();
-    static std::string PrintText_InputSelection();
+    static std::string PrintText_InputSelection(bool isCounting = false);
     static std::string PrintText_ViewSelection();
     static std::string PrintText_ViewShopSelection();
     static std::string PrintText_ViewShopBuy();
+    static std::string PrintText_ViewShopCount(bool isBuy);
+    static std::string PrintText_ViewShopIsSuccess(bool isBuy, bool isSuccess);
     static std::string PrintText_WrongSelection();
     static std::string PrintText_BossAppeared();
     static std::string PrintText_QuitGame();
