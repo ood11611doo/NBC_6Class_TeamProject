@@ -3,9 +3,8 @@
 #include "Monster.h"
 #include "BattleSystem.h"
 #include "LogSystem.h"
+#include "MarketSystem.h"
 #include "Database.h"
-
-using namespace std;
 
 class GameManager {
 private:
@@ -15,6 +14,7 @@ private:
     Player* player;
     BattleSystem* battleSystem;
     LogSystem* logSystem;
+    MarketSystem* marketSystem;
 
 public:
     // C++ Singleton
@@ -29,12 +29,14 @@ public:
     LogSystem* GetLogSystem() { return logSystem; }
 
     void SetPlayerName(string name) { player->setName(name); }
+    int GetPlayerLevel() { return player->getLevel(); }
     string GetPlayerName() { return player->getName(); }
     string PrintPlayerStatus() { return player->PrintPlayerStatus(); }
     string PrintPlayerEXPAndGold() { return player->PrintEXPAndGold(); }
     string GetPlayerItemName(int itemIndex) { return player->GetItemName(itemIndex); }
+    const std::vector<Item*> GetPlayerItems() { return player->getNumOfItem(); }
 
-    void CreateMonster() { battleSystem->GenerateMonster(player->getLevel()); }
+    void CreateMonster();
     string GetMonsterName();
     string GetMonsterGen();
     string GetKillLog() { return logSystem->GetKillCount(); }

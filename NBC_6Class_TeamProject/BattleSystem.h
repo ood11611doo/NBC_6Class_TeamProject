@@ -19,6 +19,7 @@ public:
 	const BattleReward* GetBattleReward() { return battleReward; }
 
 	void GenerateMonster(int plLevel);
+	void SetMonsterToBoss(int plLevel);
 	bool Battle(Player* pl); // 전투: true=플레이어 승리, false=플레이어 패배
 	void DeleteMonster();
 	void ClearLog();

@@ -53,12 +53,13 @@ public:
 	int getGold() const { return gold; }
 	void setGold(int gold) { this->gold = gold; }
 
-	vector <Item*> getNumOfItem() const { return item; }
+	vector<Item*> getNumOfItem() const { return item; }
 
 	void CheckLevelUp();
 	std::string PrintPlayerStatus();
 	std::string PrintEXPAndGold();
 	void UseItem(int itemIndex);
+	void RemoveItem(int itemIndex, int count);
 	int TakeDamage(int damage);
 	void AddItemByIndex(int addIndex);
 	int ReturnItemCount(int itemIndex);

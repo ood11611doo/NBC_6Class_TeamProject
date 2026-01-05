@@ -6,8 +6,9 @@
 
 using namespace std;
 
-bool BattlePrint(string plName) {
+BattleType BattlePrint(string plName) {
     StreamManager::ClearScreen();
+    int plLevelBefore = GameManager::Get().GetPlayerLevel();
     GameManager::Get().CreateMonster();
     string monsterName = GameManager::Get().GetMonsterName();
     cout << GameManager::Get().GetMonsterGen() << endl;
@@ -16,12 +17,49 @@ bool BattlePrint(string plName) {
     cout << StreamManager::PrintText_BattleLog(plName, monsterName, GameManager::Get().GetBattleLog()) << endl;
 
     if (battleResult) {
+        if (GameManager::Get().GetPlayerLevel() >= PLAYER_MAX_LVL) {
+            if (GameManager::Get().GetPlayerLevel() == plLevelBefore) {
+                return BattleType::bossDefeated;
+            } else {
+                cout << StreamManager::PrintText_BossAppeared() << endl;
+            }
+        }
+
         cout << StreamManager::PrintText_BattleRewards(plName, *GameManager::Get().GetBattleRewards()) << endl;
         cout << GameManager::Get().PrintPlayerEXPAndGold() << endl << endl;
         GameManager::Get().AfterBattle();
+
+        return BattleType::playerWin;
     }
 
-    return battleResult;
+    return BattleType::gameOver;
+}
+
+void ShopPrint() {
+    cout << StreamManager::PrintText_ViewShopSelection();
+
+    int choiceCheck;
+    cin >> choiceCheck;
+
+    switch (choiceCheck) {
+    default:
+        break;
+    case 0:
+        break;
+
+    case 1: {
+        int cinGet;
+        cout << StreamManager::PrintText_ViewShopBuy();
+    }
+        break;
+    case 2: {
+        int cinGet;
+
+    }
+        break;
+    }
+
+    StreamManager::ClearScreen();
 }
 
 int main() {
@@ -35,11 +73,14 @@ int main() {
     StreamManager::WaitForEnter();
 
     bool gameExitCheck = false;
-    bool battleResult = BattlePrint(playerName);
+    BattleType battleResult = BattlePrint(playerName);
 
     while (!gameExitCheck) {
-        if (!battleResult) {
+        if (battleResult == BattleType::gameOver) {
             cout << StreamManager::PrintText_GameOver(playerName) << endl;
+            break;
+        } else if (battleResult == BattleType::bossDefeated) {
+            cout << StreamManager::PrintText_BossDefeated() << endl;
             break;
         }
 
@@ -55,6 +96,8 @@ int main() {
             battleResult = BattlePrint(playerName);
             break;
         case 2:
+            StreamManager::ClearScreen();
+            ShopPrint();
             break;
         case 8:
             StreamManager::ClearScreen();

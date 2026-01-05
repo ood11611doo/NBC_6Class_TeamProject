@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "Database.h"
+#include "Item.h"
 
 class StreamManager {
 public:
@@ -18,15 +19,20 @@ public:
     static std::string PrintText_InputName();
     static std::string PrintText_InputSelection();
     static std::string PrintText_ViewSelection();
+    static std::string PrintText_ViewShopSelection();
+    static std::string PrintText_ViewShopBuy();
     static std::string PrintText_WrongSelection();
+    static std::string PrintText_BossAppeared();
     static std::string PrintText_QuitGame();
+    static std::string PrintText_BossDefeated();
     
     // Single calling with simple inputs
-    static std::string PrintText_PlayerCreated(const string& name);
-    static std::string PrintText_GameOver(const string& name);
+    static std::string PrintText_PlayerCreated(const std::string& name);
+    static std::string PrintText_GameOver(const std::string& name);
     
     // Single calling with class or structs
-    static std::string PrintText_BattleLog(const string& plName, const string& monName, const std::vector<BattleRecord*>& records);
-    static std::string PrintText_BattleRewards(const string& plName, const BattleReward& rewards);
+    static std::string PrintText_ViewShopSell(const std::vector<Item*> items);
+    static std::string PrintText_BattleLog(const std::string& plName, const std::string& monName, const std::vector<BattleRecord*>& records);
+    static std::string PrintText_BattleRewards(const std::string& plName, const BattleReward& rewards);
 };
 

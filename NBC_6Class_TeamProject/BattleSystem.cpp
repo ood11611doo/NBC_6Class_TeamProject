@@ -9,6 +9,12 @@ void BattleSystem::GenerateMonster(int plLevel) {
     monster_ = new Monster(plLevel, recentMonsterName); 
 }
 
+void BattleSystem::SetMonsterToBoss(int plLevel) {
+    if (monster_ != nullptr) {
+        monster_->SetMonsterToBoss(plLevel);
+    }
+}
+
 void BattleSystem::DeleteMonster() {
     if (monster_) {
         delete monster_;

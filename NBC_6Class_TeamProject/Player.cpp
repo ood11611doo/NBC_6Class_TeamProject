@@ -61,16 +61,19 @@ string Player::PrintEXPAndGold() {
 }
 
 void Player::UseItem(int itemIndex) {
-
 	if (itemIndex >= 0 && itemIndex < item.size()) {
-		if (itemIndex == 0) {
-			if((item[0]->GetCount())>0)
-				item[0]->Use(this);
+		if ((item[itemIndex]->GetCount()) > 0) {
+			item[itemIndex]->Use(this);
 		}
-		else if (itemIndex == 1) {
-			if((item[1]->GetCount()>0))
-				item[1]->Use(this);
+	}
+}
+void Player::RemoveItem(int itemIndex, int count) {
+	if (itemIndex >= 0 && itemIndex < item.size()) {
+		int desiredCountDec = count;
+		if (item[itemIndex] != nullptr && item[itemIndex]->GetCount() > count) {
+			desiredCountDec = item[itemIndex]->GetCount();
 		}
+		item[itemIndex]->SetCount(item[itemIndex]->GetCount() - desiredCountDec);
 	}
 }
 

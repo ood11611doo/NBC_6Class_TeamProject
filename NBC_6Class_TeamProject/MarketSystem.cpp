@@ -23,22 +23,16 @@ void MarketSystem::BuyItem(Player* pl, int itemIndex_, int buyCount_) {
 	for (int i = 0; i < buyCount_; i++) {
 		pl->AddItemByIndex(itemIndex_);
 	}
-	pl->setGold(pl->getGold() - priceItem);
+	pl->addGold(-priceItem);
 }
 
 void MarketSystem::SellItem(Player* pl, int itemIndex_, int sellCount_) {
 	if (pl == nullptr) { return; }
-	int cellItemPrice = 0;
+	if (pl->getNumOfItem()[itemIndex_] == nullptr) { return; }
+	if (sellCount_ > pl->getNumOfItem()[itemIndex_]->GetCount()) { return; }
 
-	if (pl->getNumOfItem()[itemIndex_] == nullptr) {
-		return;
-	} else {
-		cellItemPrice = GetCellPrice(itemIndex_);
-	}
+	int cellItemPrice = GetCellPrice(itemIndex_);
 
-	if (sellCount_ > pl->getNumOfItem()[itemIndex_]->GetCount()) {
-		return;
-	}
-
-	for (int i = 0; i < sellCount_; i++) { pl->AddItemByIndex(itemIndex_); }
-	pl->setGold(pl->getGold() - cellItemPrice * sellCount_);
+	pl->RemoveItem(itemIndex_, sellCount_);
+	pl->addGold(cellItemPrice * sellCount_);
+}

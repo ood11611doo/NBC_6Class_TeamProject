@@ -44,11 +44,38 @@ string StreamManager::PrintText_ViewSelection() {
     ss << "0. 게임 종료" << endl;
     return ss.str();
 }
+string StreamManager::PrintText_ViewShopSelection() {
+    stringstream ss;
+    ss << "==== 상점에 진입했습니다 ====" << endl;
+    ss << "1. 아이템 구매" << endl;
+    ss << "2. 아이템 판매" << endl;
+    ss << "0. 돌아가기" << endl;
+    return ss.str();
+}
+string StreamManager::PrintText_ViewShopBuy() {
+    stringstream ss;
+    ss << "---- 아이템 구매 ----" << endl;
+    ss << "1. " << ITEM_HEALING_NAME << endl;
+    ss << "2. " << ITEM_BUFFDAMAGE_NAME << endl;
+    ss << "0. 돌아가기" << endl;
+    return ss.str();
+}
 string StreamManager::PrintText_WrongSelection() {
     return "올바른 선택지가 아닙니다. 다시 입력해주세요.";
 }
+string StreamManager::PrintText_BossAppeared() {
+    stringstream ss;
+    ss << "- 10레벨을 달성했다! -" << endl;
+    ss << "- 이제 일반 몬스터는 상대도 안 된다! -" << endl;
+    return ss.str();
+}
 string StreamManager::PrintText_QuitGame() {
     return "게임을 종료합니다.";
+}
+string StreamManager::PrintText_BossDefeated() {
+    stringstream ss;
+    ss << "- asdf -" << endl;
+    return ss.str();
 }
 
 string StreamManager::PrintText_PlayerCreated(const string& name) {
@@ -56,6 +83,19 @@ string StreamManager::PrintText_PlayerCreated(const string& name) {
 }
 string StreamManager::PrintText_GameOver(const string& name) {
     return name + "가 사망했습니다. 게임 오버!";
+}
+
+string StreamManager::PrintText_ViewShopSell(const std::vector<Item*> items) {
+    stringstream ss;
+    ss << "---- 아이템 판매 ----" << endl;
+    if (items[0] != nullptr && items[0]->GetCount() > 0) {
+        ss << "1. " << ITEM_HEALING_NAME << endl;
+    }
+    if (items[1] != nullptr && items[1]->GetCount() > 0) {
+        ss << "2. " << ITEM_BUFFDAMAGE_NAME << endl;
+    }
+    ss << "0. 돌아가기" << endl;
+    return ss.str();
 }
 
 string StreamManager::PrintText_BattleLog(const string& plName, const string& monName, const std::vector<BattleRecord*>& records) {

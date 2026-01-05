@@ -46,7 +46,7 @@ constexpr const int ITEM_BUFFDAMAGE_VALUE = 10;
 
 constexpr const float ITEM_SELL_PRICE_RATIO = 0.6f;
 
-int GetBasicPrice(int index) {
+inline int GetBasicPrice(int index) {
 	switch (index) {
 	case 0:
 		return ITEM_HEALING_PRICE;
@@ -57,15 +57,8 @@ int GetBasicPrice(int index) {
 	return 0;
 }
 
-int GetCellPrice(int index) {
-	switch (index) {
-	case 0:
-		return (int)((float)ITEM_HEALING_PRICE * ITEM_SELL_PRICE_RATIO);
-	
-	case 1:
-		return (int)((float)ITEM_BUFFDAMAGE_PRICE * ITEM_SELL_PRICE_RATIO);
-	}
-	return 0;
+inline int GetCellPrice(int index) {
+	return GetBasicPrice(index) * ITEM_SELL_PRICE_RATIO;
 }
 
 enum RecordType {
@@ -73,6 +66,11 @@ enum RecordType {
 	playerHeal,
 	playerBuff,
 	monsterAttack
+};
+enum BattleType {
+	playerWin,
+	bossDefeated,
+	gameOver
 };
 
 struct BattleRecord {

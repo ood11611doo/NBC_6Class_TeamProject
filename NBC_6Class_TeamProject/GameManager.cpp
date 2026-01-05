@@ -6,11 +6,20 @@ GameManager::GameManager() {
     player = new Player();
     battleSystem = new BattleSystem();
     logSystem = new LogSystem();
+    marketSystem = new MarketSystem();
 }
 GameManager::~GameManager() {
     delete player;
     delete battleSystem;
     delete logSystem;
+    delete marketSystem;
+}
+
+void GameManager::CreateMonster() {
+    battleSystem->GenerateMonster(player->getLevel());
+    if (player->getLevel() >= PLAYER_MAX_LVL) {
+        battleSystem->SetMonsterToBoss(player->getLevel());
+    }
 }
 
 string GameManager::GetMonsterName() {
