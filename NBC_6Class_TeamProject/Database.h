@@ -57,6 +57,17 @@ int GetBasicPrice(int index) {
 	return 0;
 }
 
+int GetCellPrice(int index) {
+	switch (index) {
+	case 0:
+		return (int)((float)ITEM_HEALING_PRICE * ITEM_SELL_PRICE_RATIO);
+	
+	case 1:
+		return (int)((float)ITEM_BUFFDAMAGE_PRICE * ITEM_SELL_PRICE_RATIO);
+	}
+	return 0;
+}
+
 enum RecordType {
 	playerAttack,
 	playerHeal,
