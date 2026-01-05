@@ -46,6 +46,17 @@ constexpr const int ITEM_BUFFDAMAGE_VALUE = 10;
 
 constexpr const float ITEM_SELL_PRICE_RATIO = 0.6f;
 
+int GetBasicPrice(int index) {
+	switch (index) {
+	case 0:
+		return ITEM_HEALING_PRICE;
+	case 1:
+		return ITEM_BUFFDAMAGE_PRICE;
+	}
+
+	return 0;
+}
+
 enum RecordType {
 	playerAttack,
 	playerHeal,
