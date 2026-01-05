@@ -51,17 +51,17 @@ int main() {
         
         switch (choiceCheck) {
         case 1:
-            system("cls");
+            StreamManager::ClearScreen();
             battleResult = BattlePrint(playerName);
             break;
         case 2:
             break;
         case 8:
-            system("cls");
+            StreamManager::ClearScreen();
             cout << GameManager::Get().PrintPlayerStatus() << endl;
             break;
         case 9:
-            system("cls");
+            StreamManager::ClearScreen();
             cout << GameManager::Get().GetKillLog() << endl;
             break;
         case 0:
