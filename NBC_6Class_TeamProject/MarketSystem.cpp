@@ -6,7 +6,9 @@
 
 void MarketSystem::BuyItem(Player* pl, int itemIndex_, int buyCount_) {
 	if (pl == nullptr) { return; }
+
 	int priceItem = 0;
+
 	if (pl->getNumOfItem()[itemIndex_] == nullptr) {
 		priceItem = GetBasicPrice(itemIndex_);
 	} else {
@@ -25,24 +27,38 @@ void MarketSystem::BuyItem(Player* pl, int itemIndex_, int buyCount_) {
 }
 
 void MarketSystem::SellItem(Player* pl, int itemIndex_, int sellCount) {
-	std::string item = "";
+	if (pl == nullptr) { return; }
+	int cellItemPrice = 0;
 
-	if (/*item[0] != nullptr*/ && itemIndex_ == 0) {
-		// Item* item;
-		if (pl->ReturnItemCount(0) >= sellCount) {
-			HealthPotion.Setcount(pl->ReturnItemCount(0) - sellCount); // 팔고 남은 개수 입력(다시)
-			pl->setGold(pl->getGold() + sellCount * ITEM_HEALING_PRICE)
-		}
+	if (pl->getNumOfItem()[itemIndex_] == nullptr) {
+		return;
+	} else {
+		cellItemPrice = GetCellPrice(itemIndex_);
 	}
-	else if (/*item[1] != nullptr*/ && itemIndex_ == 1) {
-		if (pl->ReturnItemCount(1) >= sellCount) {
-			// 가진 개수 - 판매 개수
-			pl->setGold(pl->getGold() + sellCount * ITEM_BUFFDAMAGE_PRICE)
-		}
-	}
-	else {
+
+	if (sellCount > pl->getNumOfItem()[itemIndex_]->GetCount()) {
 		return;
 	}
+
+	for (int i = 0; i < sellCount; i++) { pl->AddItemByIndex(itemIndex_); }
+	pl->setGold(pl->getGold() - cellItemPrice * sellCount);
+
+	// if (/*item[0] != nullptr*/ && itemIndex_ == 0) {
+	// 	// Item* item;
+	// 	if (pl->ReturnItemCount(0) >= sellCount) {
+	// 		HealthPotion.Setcount(pl->ReturnItemCount(0) - sellCount); // 팔고 남은 개수 입력(다시)
+	// 		pl->setGold(pl->getGold() + sellCount * ITEM_HEALING_PRICE)
+	// 	}
+	// }
+	// else if (/*item[1] != nullptr*/ && itemIndex_ == 1) {
+	// 	if (pl->ReturnItemCount(1) >= sellCount) {
+	// 		// 가진 개수 - 판매 개수
+	// 		pl->setGold(pl->getGold() + sellCount * ITEM_BUFFDAMAGE_PRICE)
+	// 	}
+	// }
+	// else {
+	// 	return;
+	// }
 }
 // Todo : 아이템 판매 함수
 // Player를 포인터로 받아와서 사용하도록
