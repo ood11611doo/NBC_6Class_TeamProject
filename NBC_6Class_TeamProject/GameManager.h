@@ -30,6 +30,7 @@ public:
 
     void SetPlayerName(string name) { player->setName(name); }
     int GetPlayerLevel() { return player->getLevel(); }
+    int GetPlayerGold() { return player->getGold(); }
     string GetPlayerName() { return player->getName(); }
     string PrintPlayerStatus() { return player->PrintPlayerStatus(); }
     string PrintPlayerEXPAndGold() { return player->PrintEXPAndGold(); }

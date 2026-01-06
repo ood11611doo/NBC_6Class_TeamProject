@@ -29,11 +29,20 @@ string StreamManager::GetUTF8Input() {
     return utf8Str;
 }
 
+int StreamManager::GetIntegerInput() {
+    int inputValue;
+    cin >> inputValue;
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore((numeric_limits<streamsize>::max)(), '\n');
+        return -1;
+    }
+
+    return inputValue;
+}
+
 string StreamManager::PrintText_InputName() {
     return "캐릭터 이름을 입력하세요: ";
-}
-string StreamManager::PrintText_InputSelection(bool isCounting) {
-    return isCounting ? "입력: " : "선택: ";
 }
 string StreamManager::PrintText_ViewSelection() {
     stringstream ss;
@@ -60,17 +69,6 @@ string StreamManager::PrintText_ViewShopBuy() {
     ss << "0. 돌아가기" << endl;
     return ss.str();
 }
-string StreamManager::PrintText_ViewShopCount(bool isBuy) {
-    string nameCheck = isBuy ? "구매" : "판매";
-    return "---- 아이템 " + nameCheck + " 수량 입력 ----";
-}
-string StreamManager::PrintText_ViewShopIsSuccess(bool isBuy, bool isSuccess) {
-    stringstream ss;
-    string nameCheck = isBuy ? "구매" : "판매";
-    string successCheck = isSuccess ? "성공" : "실패";
-    ss << "아이템 " << nameCheck << "에 " << successCheck << "했습니다.";
-    return ss.str();
-}
 string StreamManager::PrintText_WrongSelection() {
     return "올바른 선택지가 아닙니다. 다시 입력해주세요.";
 }
@@ -94,6 +92,35 @@ string StreamManager::PrintText_PlayerCreated(const string& name) {
 }
 string StreamManager::PrintText_GameOver(const string& name) {
     return name + "가 사망했습니다. 게임 오버!";
+}
+string StreamManager::PrintText_InputSelection(bool isCounting) {
+    return isCounting ? "입력: " : "선택: ";
+}
+string StreamManager::PrintText_ViewShopCount(bool isBuy) {
+    string nameCheck = isBuy ? "구매" : "판매";
+    return "---- 아이템 " + nameCheck + " 수량 입력 ----";
+}
+string StreamManager::PrintText_ViewShopIsSuccess(bool isBuy, bool isSuccess) {
+    stringstream ss;
+    string nameCheck = isBuy ? "구매" : "판매";
+    string successCheck = isSuccess ? "성공" : "실패";
+    ss << "아이템 " << nameCheck << "에 " << successCheck << "했습니다.";
+    return ss.str();
+}
+string StreamManager::PrintText_ViewPlayerGold(int curGold) {
+    stringstream ss;
+    ss << "현재 골드: " << curGold;
+    return ss.str();
+}
+string StreamManager::PrintText_ViewItemPrice(int price) {
+    stringstream ss;
+    ss << "아이템 가격: " << price << " 골드";
+    return ss.str();
+}
+string StreamManager::PrintText_ViewItemCount(const string& name, int count) {
+    stringstream ss;
+    ss << name << " 보유 개수: " << count << "개";
+    return ss.str();
 }
 
 string StreamManager::PrintText_ViewShopSell(const std::vector<Item*> items) {
