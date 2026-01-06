@@ -36,9 +36,8 @@ bool BattleSystem::Battle(Player* pl) {
 
         int attackItemChance = rand() % 100;
         if (attackItemChance < PLAYER_POTION_ATTACK_CHANCE) {
-            int attackItemIndex = pl->ReturnItemCount(1);
-            if (attackItemIndex > 0) {
-                pl->UseItem(attackItemIndex);
+            if (pl->ReturnItemCount(1) > 0) {
+                pl->UseItem(1);
                 battleRecords.push_back(new BattleRecord{ RecordType::playerBuff, pl->getTotalAtk() });
                 attackSkip = true;
             }
@@ -47,9 +46,8 @@ bool BattleSystem::Battle(Player* pl) {
         if (!attackSkip && pl->getHp() <= (pl->getMaxHp() * PLAYER_POTION_HEALTH_PERCENT) / 100) {
             int healthItemChance = rand() % 100;
             if (healthItemChance < PLAYER_POTION_HEALTH_CHANCE) {
-                int healthItemIndex = pl->ReturnItemCount(0);
-                if (healthItemIndex != -1) {
-                    pl->UseItem(healthItemIndex);
+                if (pl->ReturnItemCount(0) >  0) {
+                    pl->UseItem(0);
                     battleRecords.push_back(new BattleRecord{ RecordType::playerHeal, pl->getHp() });
                     attackSkip = true;
                 }
