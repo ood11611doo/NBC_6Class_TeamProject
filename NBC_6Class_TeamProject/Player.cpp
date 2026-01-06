@@ -62,7 +62,7 @@ string Player::PrintEXPAndGold() {
 
 void Player::UseItem(int itemIndex) {
 	if (itemIndex >= 0 && itemIndex < item.size()) {
-		if ((item[itemIndex]->GetCount()) > 0) {
+		if (item[itemIndex] != nullptr && (item[itemIndex]->GetCount()) > 0) {
 			item[itemIndex]->Use(this);
 		}
 	}
