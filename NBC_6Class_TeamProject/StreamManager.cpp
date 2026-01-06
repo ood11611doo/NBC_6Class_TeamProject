@@ -83,7 +83,7 @@ string StreamManager::PrintText_QuitGame() {
 }
 string StreamManager::PrintText_BossDefeated() {
     stringstream ss;
-    ss << "- asdf -" << endl;
+    ss << "---- THE END ----" << endl;
     return ss.str();
 }
 
