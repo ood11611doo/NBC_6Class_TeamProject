@@ -98,6 +98,7 @@ bool BattleSystem::Battle(Player* pl) {
 
     pl->addExp(expAdded);
     pl->addGold(goldAdded);
+    pl->setExtraAtk(0);
     pl->CheckLevelUp();
 
     return true; 
