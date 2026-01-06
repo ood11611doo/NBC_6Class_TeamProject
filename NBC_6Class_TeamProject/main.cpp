@@ -198,5 +198,7 @@ int main() {
         }
     }
 
+    StreamManager::WaitForEnter();
+
 	return 0;
 }
