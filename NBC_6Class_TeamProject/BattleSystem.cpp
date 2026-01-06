@@ -24,7 +24,6 @@ void BattleSystem::DeleteMonster() {
 }
 bool BattleSystem::Battle(Player* pl) {
     ClearLog();
-    srand(static_cast<unsigned int>(std::time(nullptr)));
     if (monster_ == nullptr) {
         GenerateMonster(pl->getLevel());
     }

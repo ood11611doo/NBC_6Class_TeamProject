@@ -80,6 +80,10 @@ void ShopPrint() {
                 cout << StreamManager::PrintText_ViewItemPrice(GetBasicPrice(realIndex)) << endl;
                 cout << StreamManager::PrintText_InputSelection(true);
                 int shopBuyCount = StreamManager::GetIntegerInput();
+                if (shopBuyCount <= 0) {
+                    isWrongSelection = true;
+                    break;
+                }
                 bool isSuccess = GameManager::Get().TryBuyItem(realIndex, shopBuyCount);
                 cout << StreamManager::PrintText_ViewShopIsSuccess(true, isSuccess) << endl;
                 isEscapeShop = isSuccess;
@@ -115,6 +119,10 @@ void ShopPrint() {
                 cout << StreamManager::PrintText_ViewItemCount(plItemGet[realIndex]->GetName(), plItemGet[realIndex]->GetCount()) << endl;
                 cout << StreamManager::PrintText_InputSelection(true);
                 int shopSellCount = StreamManager::GetIntegerInput();
+                if (shopSellCount <= 0) {
+                    isWrongSelection = true;
+                    break;
+                }
                 bool isSuccess = GameManager::Get().TrySellItem(realIndex, shopSellCount);
                 cout << StreamManager::PrintText_ViewShopIsSuccess(false, isSuccess) << endl;
                 isEscapeShop = isSuccess;
@@ -131,6 +139,7 @@ void ShopPrint() {
 
 int main() {
     SetConsoleOutputCP(65001);
+    srand(static_cast<unsigned int>(std::time(nullptr)));
 
     cout << StreamManager::PrintText_InputName();
     string playerName = StreamManager::GetUTF8Input();
