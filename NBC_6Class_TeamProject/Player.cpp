@@ -70,7 +70,7 @@ void Player::UseItem(int itemIndex) {
 void Player::RemoveItem(int itemIndex, int count) {
 	if (itemIndex >= 0 && itemIndex < item.size()) {
 		int desiredCountDec = count;
-		if (item[itemIndex] != nullptr && item[itemIndex]->GetCount() > count) {
+		if (item[itemIndex] != nullptr && item[itemIndex]->GetCount() < count) {
 			desiredCountDec = item[itemIndex]->GetCount();
 		}
 		item[itemIndex]->SetCount(item[itemIndex]->GetCount() - desiredCountDec);
