@@ -9,12 +9,26 @@
 
 using namespace std;
 
-Player::Player() : level(1), hp(200), max_hp(200), atkpower(30), extraatk(10), exp(0), gold(0) {
+Player::Player() : 
+	level(PLAYER_START_LVL), 
+	hp(PLAYER_START_HEALTH),
+	max_hp(PLAYER_START_HEALTH),
+	atkpower(PLAYER_START_ATTACK),
+	extraatk(0), 
+	exp(0), 
+	gold(0) {
 	name = " ";
 	item = vector<Item*>(10, nullptr);
 }
 
-Player::Player(string name) : level(1), hp(200), max_hp(200), atkpower(30), extraatk(10), exp(0), gold(0) {
+Player::Player(string name) : 
+	level(PLAYER_START_LVL), 
+	hp(PLAYER_START_HEALTH),
+	max_hp(PLAYER_START_HEALTH),
+	atkpower(PLAYER_START_ATTACK),
+	extraatk(0), 
+	exp(0), 
+	gold(0) {
 	this->name = name;
 	item = vector<Item*>(10, nullptr);
 }
