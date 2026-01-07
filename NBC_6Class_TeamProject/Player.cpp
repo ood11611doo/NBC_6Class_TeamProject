@@ -1,5 +1,4 @@
-#include <iostream>
-#include <algorithm>
+﻿#include <algorithm>
 #include <vector>
 #include <sstream>
 #include <string>
@@ -20,7 +19,6 @@ Player::Player() :
 	name = " ";
 	item = vector<Item*>(10, nullptr);
 }
-
 Player::Player(string name) : 
 	level(PLAYER_START_LVL), 
 	hp(PLAYER_START_HEALTH),
@@ -39,9 +37,7 @@ Player::~Player() {
 		}
 	}
 }
-
 void Player::CheckLevelUp() {
-	//exp += 50;
 	if (exp < 100 || level >= 10)
 		return;
 
@@ -57,7 +53,7 @@ string Player::PrintPlayerStatus() {
 	stringstream status;
 	status << "이름:" << name << " | 레벨:" << level << " | 현재 체력:" << hp << "/" << max_hp;
 	status << " | 공격력:" << atkpower + extraatk << " | 경험치:" << exp << " | 현재 골드:" << gold << "\n";
-	//아이템 출력 추가되야?
+
 	for (const auto& itemIn : item) {
 		if (itemIn != nullptr && itemIn->GetCount() > 0) {
 			status << itemIn->GetName() << ": " << itemIn->GetCount() << "\n";

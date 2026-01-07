@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <vector>
 #include "Item.h"
@@ -22,8 +22,6 @@ public:
 	Player(std::string name);
 	~Player();
 	
-
-	// - Todo : getter, setter 함수 선언 필요
 	std::string getName() const { return name; }
 	void setName(string name) { this->name = name; }
 
